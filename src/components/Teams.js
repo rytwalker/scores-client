@@ -11,14 +11,13 @@ const StyledTeamList = styled.ul`
 
 class Teams extends Component {
   render() {
+    const { teams } = this.props;
     return (
       <StyledTeamList>
         <LeaderboardKey />
-        <Team />
-        <Team />
-        <Team />
-        <Team />
-        <Team />
+        {teams.map((team, index) => (
+          <Team team={team} rank={index + 1} />
+        ))}
       </StyledTeamList>
     );
   }
