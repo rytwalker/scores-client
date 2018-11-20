@@ -16,7 +16,7 @@ class Teams extends Component {
       <StyledTeamList>
         <LeaderboardKey />
         {teams.map((team, index) => (
-          <Team team={team} rank={index + 1} />
+          <Team team={team} rank={index + 1} key={team.id} />
         ))}
       </StyledTeamList>
     );
