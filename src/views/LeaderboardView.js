@@ -7,8 +7,8 @@ class LeaderboardView extends Component {
   state = {};
 
   componentDidMount() {
-    const { fetchTeams } = this.props;
-    fetchTeams();
+    const { fetchTeams, teams } = this.props;
+    return !teams.length ? fetchTeams() : null;
   }
 
   render() {
@@ -28,9 +28,9 @@ class LeaderboardView extends Component {
 
 const mapStateToProps = state => {
   return {
-    teams: state.teams,
-    error: state.error,
-    isFetching: state.isFetching
+    teams: state.teams.teams,
+    error: state.teams.error,
+    isFetching: state.teams.isFetching
   };
 };
 
