@@ -9,7 +9,6 @@ const StyledList = styled.ul`
 `;
 
 class Quiz extends Component {
-  state = {};
   render() {
     const { quiz } = this.props;
     console.log(quiz);
