@@ -20,15 +20,24 @@ const StyledQuizRow = styled.div`
     }
     button {
       border: none;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #b2bec3;
+      color: inherit;
+      outline: 0;
+      cursor: pointer;
     }
+  }
+  .jokered {
+    background: #0984e3 !important;
+    color: #fff !important;
   }
 `;
 
 class QuizFormRow extends Component {
   state = {
     total: 0,
-    rounds: [0, 0, 0, 0, 0, 0, 0, 0]
+    rounds: [0, 0, 0, 0, 0, 0, 0, 0],
+    isJokered: false
   };
 
   updateTotal = (rounds = this.state.rounds) => {
@@ -38,22 +47,36 @@ class QuizFormRow extends Component {
 
   updateRound = (index, e) => {
     const updatedScore = parseInt(e.target.value);
-    const rounds = [...this.state.rounds];
-    rounds[index] = updatedScore;
-    this.updateTotal(rounds);
+    if (updatedScore >= 0 && updatedScore <= 16) {
+      const rounds = [...this.state.rounds];
+      rounds[index] = updatedScore;
+      this.updateTotal(rounds);
+    } else {
+      e.target.value = '';
+    }
+  };
+
+  activateJoker = e => {
+    e.preventDefault();
+    if (!this.state.isJokered) {
+      e.target.classList.toggle('jokered');
+      // parseInt(e.target.previousSibling.value) * 2;
+      // this.updateRound();
+    }
   };
 
   render() {
-    const { total, rounds } = this.state;
+    const { total, rounds, isJokered } = this.state;
+    const { initalRank, teamName } = this.props;
     return (
       <StyledQuizRow>
-        <span className="rank">1.</span>
-        <span className="team-name">The team name</span>
+        <span className="rank">{initalRank}.</span>
+        <span className="team-name">{teamName}</span>
         <span className="total">{total}</span>
         {rounds.map((round, index) => (
           <div className="round" key={index}>
             <input type="number" onBlur={e => this.updateRound(index, e)} />
-            <button>J</button>
+            <button onClick={this.activateJoker}>J</button>
           </div>
         ))}
       </StyledQuizRow>
