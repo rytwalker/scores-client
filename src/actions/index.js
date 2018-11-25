@@ -12,6 +12,10 @@ export const FETCHING_QUIZ = 'FETCHING_QUIZ';
 export const FETCHING_QUIZ_SUCCESS = 'FETCHING_QUIZ_SUCCESS';
 export const FETCHING_QUIZ_FAILURE = 'FETCHING_QUIZ_FAILURE';
 
+export const ADD_TEAM = 'ADD_TEAM';
+
+export const UPDATE_TOTAL_SCORE = 'UPDATE_TOTAL_SCORE';
+
 export const fetchTeams = () => dispatch => {
   dispatch({ type: FETCHING_TEAMS });
   axios
@@ -46,4 +50,18 @@ export const fetchQuiz = id => dispatch => {
     .catch(err => {
       dispatch({ type: FETCHING_QUIZ_FAILURE, payload: err });
     });
+};
+
+export const addingTeam = team => {
+  return {
+    type: ADD_TEAM,
+    payload: team
+  };
+};
+
+export const updatingTotalScore = team => {
+  return {
+    type: UPDATE_TOTAL_SCORE,
+    payload: team
+  };
 };

@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { addingTeam, updatingTotalScore } from '../actions';
+import { StyledNewTeamForm } from '../styles/StyledNewTeamForm';
 import QuizFormRow from './QuizFormRow';
 
 class QuizForm extends Component {
   state = {
-    teams: [{ id: 0, teamName: 'Im Too Old' }],
+    teams: [
+      {
+        id: 0,
+        teamName: 'Im Too Old',
+        total: 0,
+        rounds: [0, 0, 0, 0, 0, 0, 0, 0]
+      }
+    ],
     nameValue: '',
     idValue: ''
   };
@@ -16,34 +25,51 @@ class QuizForm extends Component {
   handleNewTeam = e => {
     e.preventDefault();
     const { nameValue, idValue } = this.state;
-    const teams = [...this.state.teams, { id: idValue, teamName: nameValue }];
-    this.setState({ teams, idValue: '', nameValue: '' });
+    const { addingTeam } = this.props;
+    const team = {
+      id: idValue,
+      teamName: nameValue,
+      total: 0,
+      rounds: [0, 0, 0, 0, 0, 0, 0, 0]
+    };
+    addingTeam(team);
+    this.setState({ nameValue: '', idValue: '' });
+  };
+
+  handleInputBlur = team => {
+    this.props.updatingTotalScore(team);
   };
 
   render() {
-    const { teams, nameValue, idValue } = this.state;
+    const { nameValue, idValue } = this.state;
+    const { teams } = this.props;
     return (
       <form className="View">
-        <div className="NewTeamForm">
+        <StyledNewTeamForm>
           <input
             type="text"
             value={nameValue}
             name="nameValue"
             onChange={this.handleInputChange}
+            placeholder="Team name..."
           />
           <input
             type="text"
             value={idValue}
             name="idValue"
             onChange={this.handleInputChange}
+            placeholder="Id"
+            className="id-input"
           />
           <button onClick={this.handleNewTeam}>+</button>
-        </div>
+          <div className="teams-count">Teams: {teams.length}</div>
+        </StyledNewTeamForm>
         {teams.map((team, index) => (
           <QuizFormRow
-            teamName={team.teamName}
-            initalRank={index + 1}
+            team={team}
+            rank={index + 1}
             key={team.id}
+            handleInputBlur={this.handleInputBlur}
           />
         ))}
       </form>
@@ -51,4 +77,13 @@ class QuizForm extends Component {
   }
 }
 
-export default QuizForm;
+const mapStateToProps = state => {
+  return {
+    teams: state.scoresheet.teams
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addingTeam, updatingTotalScore }
+)(QuizForm);
