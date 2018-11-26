@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyledQuizRow } from '../styles/StyledQuizRow';
+import { StyledQuizRow } from '../../styles/StyledQuizRow';
 
 class QuizFormRow extends Component {
   state = {

@@ -4,7 +4,7 @@ import LeaderboardView from './views/LeaderboardView';
 import QuizzesView from './views/QuizzesView';
 import Sidebar from './components/Sidebar';
 import './styles/App.css';
-import QuizForm from './components/QuizForm';
+import Scorecard from './components/Scorecard/Scorecard';
 
 class App extends Component {
   render() {
@@ -12,8 +12,8 @@ class App extends Component {
       <div className="App">
         <Sidebar />
         <Route exact path="/" component={LeaderboardView} />
-        <Route exact path="/latest-quiz" component={QuizzesView} />
-        <Route exact path="/new-quiz" component={QuizForm} />
+        <Route exact path="/quiz/:id" component={QuizzesView} />
+        <Route exact path="/new-quiz" component={Scorecard} />
       </div>
     );
   }

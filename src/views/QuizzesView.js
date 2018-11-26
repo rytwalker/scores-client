@@ -1,27 +1,78 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuizzes, fetchQuiz } from '../actions';
-import Quiz from '../components/Quiz';
+import styled from 'styled-components';
+import Quiz from '../components/Quizzes/Quiz';
+
+const StyledQuizDateRow = styled.div`
+  display: flex;
+  padding: 2rem;
+  justify-content: space-between;
+  align-items: center;
+
+  .quiz-dates {
+    font-size: 2.6rem;
+    background: #fff;
+    color: inherit;
+    border: none;
+    padding: 1rem;
+
+    &:focus {
+      outline-color: #2d3436;
+      outline-style: dotted;
+      outline-width: 1px;
+      outline-offset: 5px;
+    }
+  }
+`;
 
 class QuizzesView extends Component {
   componentDidMount() {
     const { fetchQuizzes, totalQuizzes } = this.props;
-    return !totalQuizzes ? fetchQuizzes() : null;
+    return !totalQuizzes.length ? fetchQuizzes() : null;
   }
 
   componentDidUpdate(prevProps) {
     const { totalQuizzes, fetchQuiz } = this.props;
-    if (prevProps.totalQuizzes !== this.props.totalQuizzes) {
-      fetchQuiz(totalQuizzes);
+    let currentQuizId = parseInt(this.props.match.params.id);
+    if (
+      prevProps.totalQuizzes.length !== totalQuizzes.length ||
+      prevProps.match.params.id !== this.props.match.params.id
+    ) {
+      fetchQuiz(currentQuizId);
     }
   }
 
+  onSelectChange = e => {
+    console.log('Working', e.target.value);
+    this.props.history.push(`/quiz/${e.target.value}`);
+  };
+
   render() {
-    const { quiz } = this.props;
+    const { quiz, totalQuizzes } = this.props;
     return (
       <div className="View">
         <h2>LATEST QUIZ</h2>
-        {!quiz ? <div>Loading Quiz...</div> : <Quiz quiz={quiz} />}
+        {!quiz ? (
+          <div>Loading Quiz...</div>
+        ) : (
+          <div>
+            <StyledQuizDateRow>
+              <select
+                name="quizzes"
+                className="quiz-dates"
+                onChange={this.onSelectChange}
+              >
+                {totalQuizzes.reverse().map(quiz => (
+                  <option value={quiz.id} key={quiz.id}>
+                    {quiz.date}
+                  </option>
+                ))}
+              </select>
+            </StyledQuizDateRow>
+            <Quiz quiz={quiz} quizzes={totalQuizzes} />
+          </div>
+        )}
       </div>
     );
   }
@@ -29,7 +80,7 @@ class QuizzesView extends Component {
 
 const mapStateToProps = state => {
   return {
-    totalQuizzes: state.quizzes.quizzesLength,
+    totalQuizzes: state.quizzes.quizzes,
     quiz: state.quizzes.quiz
   };
 };

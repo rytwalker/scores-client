@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { teamsReducer } from '../reducers';
+// import { teamsReducer } from '../../reducers';
 
 const StyledTeam = styled.li`
   display: grid;

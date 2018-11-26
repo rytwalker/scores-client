@@ -19,7 +19,7 @@ export const UPDATE_TOTAL_SCORE = 'UPDATE_TOTAL_SCORE';
 export const fetchTeams = () => dispatch => {
   dispatch({ type: FETCHING_TEAMS });
   axios
-    .get('http://localhost:5000/api/teams')
+    .get('https://suzies-scores.herokuapp.com/api/teams')
     .then(res => {
       dispatch({ type: FETCHING_TEAMS_SUCCESS, payload: res.data });
     })
@@ -31,9 +31,9 @@ export const fetchTeams = () => dispatch => {
 export const fetchQuizzes = () => dispatch => {
   dispatch({ type: FETCHING_QUIZZES });
   axios
-    .get(`http://localhost:5000/api/quizzes/`)
+    .get(`https://suzies-scores.herokuapp.com/api/quizzes/`)
     .then(res => {
-      dispatch({ type: FETCHING_QUIZZES_SUCCESS, payload: res.data.length });
+      dispatch({ type: FETCHING_QUIZZES_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: FETCHING_QUIZZES_FAILURE, payload: err });
@@ -43,7 +43,7 @@ export const fetchQuizzes = () => dispatch => {
 export const fetchQuiz = id => dispatch => {
   dispatch({ type: FETCHING_QUIZ });
   axios
-    .get(`http://localhost:5000/api/quizzes/${id}`)
+    .get(`https://suzies-scores.herokuapp.com/api/quizzes/${id}`)
     .then(res => {
       dispatch({ type: FETCHING_QUIZ_SUCCESS, payload: res.data });
     })

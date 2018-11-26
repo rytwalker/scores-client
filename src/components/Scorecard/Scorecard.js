@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addingTeam, updatingTotalScore } from '../actions';
-import { StyledNewTeamForm } from '../styles/StyledNewTeamForm';
-import QuizFormRow from './QuizFormRow';
+import { addingTeam, updatingTotalScore } from '../../actions';
+import { StyledNewTeamForm } from '../../styles/StyledNewTeamForm';
+import ScorecardRow from './ScorecardRow';
 
-class QuizForm extends Component {
+class Scorecard extends Component {
   state = {
     teams: [
       {
@@ -65,7 +65,7 @@ class QuizForm extends Component {
           <div className="teams-count">Teams: {teams.length}</div>
         </StyledNewTeamForm>
         {teams.map((team, index) => (
-          <QuizFormRow
+          <ScorecardRow
             team={team}
             rank={index + 1}
             key={team.id}
@@ -86,4 +86,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { addingTeam, updatingTotalScore }
-)(QuizForm);
+)(Scorecard);

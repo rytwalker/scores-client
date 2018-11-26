@@ -8,7 +8,7 @@ import {
 } from '../actions';
 
 const initalState = {
-  quizzesLength: 0,
+  quizzes: [],
   quiz: null,
   isFetchingQuizzes: false,
   isFetchingQuiz: false,
@@ -22,7 +22,7 @@ export const quizzesReducer = (state = initalState, action) => {
     case FETCHING_QUIZZES_SUCCESS:
       return {
         ...state,
-        quizzesLength: action.payload,
+        quizzes: [...action.payload],
         isFetchingQuizzes: false
       };
     case FETCHING_QUIZZES_FAILURE:

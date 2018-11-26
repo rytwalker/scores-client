@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import QuizRow from './QuizRow';
+import QuizKey from './QuizKey';
 
 const StyledList = styled.ul`
   list-style: none;
@@ -10,12 +11,11 @@ const StyledList = styled.ul`
 
 class Quiz extends Component {
   render() {
-    const { quiz } = this.props;
-    console.log(quiz);
+    const { quiz, quizzes } = this.props;
     return (
       <div>
-        <h3>{quiz.date}</h3>
         <StyledList>
+          <QuizKey />
           {quiz.results.map((team, index) => (
             <QuizRow team={team} key={team.teamId} rank={index + 1} />
           ))}
