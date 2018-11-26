@@ -27,7 +27,7 @@ class Team extends Component {
     const { team, rank } = this.props;
     return (
       <StyledTeam>
-        <span className="rank"> {rank}</span>
+        <span className="rank">{rank}</span>
         <span className="team-name">{team.teamName}</span>
         <span className="average-score num">
           {Math.round(team.averageScore)}

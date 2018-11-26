@@ -10,14 +10,40 @@ const StyledTeamList = styled.ul`
 `;
 
 class Teams extends Component {
+  handleDuplicateRankings = (teams, team, index) => {
+    if (index === 0) {
+      return index + 1;
+    } else if (
+      Math.round(teams[index - 1].averageScore) ===
+      Math.round(team.averageScore)
+    ) {
+      return index;
+    } else {
+      return index + 1;
+    }
+  };
+
   render() {
     const { teams } = this.props;
+    let rank;
     return (
       <StyledTeamList>
         <LeaderboardKey />
-        {teams.map((team, index) => (
-          <Team team={team} rank={index + 1} key={team.id} />
-        ))}
+        {teams.map((team, index) => {
+          // const rank = this.handleDuplicateRankings(teams, team, index);
+          if (index === 0) {
+            rank = index + 1;
+          } else if (
+            Math.round(teams[index - 1].averageScore) ===
+            Math.round(team.averageScore)
+          ) {
+            rank = rank;
+          } else {
+            rank = index + 1;
+          }
+
+          return <Team team={team} rank={rank} key={team.id} />;
+        })}
       </StyledTeamList>
     );
   }
