@@ -5,6 +5,7 @@ import QuizzesView from './views/QuizzesView';
 import Sidebar from './components/Sidebar';
 import './styles/App.css';
 import Scorecard from './components/Scorecard/Scorecard';
+import AdminDashboardView from './views/AdminDashboardView';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
         <Route exact path="/" component={LeaderboardView} />
         <Route exact path="/quiz/:id" component={QuizzesView} />
         <Route exact path="/new-quiz" component={Scorecard} />
+        <Route exact path="/admin-dashboard" component={AdminDashboardView} />
       </div>
     );
   }

@@ -18,7 +18,7 @@ class Sidebar extends Component {
           About
         </NavLink>
         <NavLink
-          to="/new-quiz"
+          to="/admin-dashboard"
           className="admin-link"
           activeClassName="active-admin"
         >
