@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import AboutView from './views/AboutView';
+import AdminDashboardView from './views/AdminDashboardView';
 import LeaderboardView from './views/LeaderboardView';
 import QuizzesView from './views/QuizzesView';
 import Sidebar from './components/Sidebar';
-import './styles/App.css';
 import Scorecard from './components/Scorecard/Scorecard';
-import AdminDashboardView from './views/AdminDashboardView';
-import AboutView from './views/AboutView';
+import './styles/App.css';
 
 class App extends Component {
   render() {

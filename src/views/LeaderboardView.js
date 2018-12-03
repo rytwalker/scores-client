@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTeams } from '../actions';
+import PropTypes from 'prop-types';
 import Teams from '../components/Teams/Teams';
 
 class LeaderboardView extends Component {
-  state = {};
-
   componentDidMount() {
     const { fetchTeams, teams } = this.props;
     return !teams.length ? fetchTeams() : null;
@@ -32,6 +31,12 @@ const mapStateToProps = state => {
     error: state.teams.error,
     isFetching: state.teams.isFetching
   };
+};
+
+LeaderboardView.propTypes = {
+  teams: PropTypes.array.isRequired,
+  error: PropTypes.any,
+  isFetching: PropTypes.bool.isRequired
 };
 
 export default connect(

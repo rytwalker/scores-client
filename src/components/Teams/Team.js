@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-// import { teamsReducer } from '../../reducers';
 
 const StyledTeam = styled.li`
   display: grid;
@@ -40,5 +40,14 @@ class Team extends Component {
     );
   }
 }
+
+Team.propTypes = {
+  team: PropTypes.shape({
+    teamId: PropTypes.number.isRequired,
+    teamName: PropTypes.string.isRequired,
+    gamesPlayed: PropTypes.string.isRequired,
+    averagePercentCorrect: PropTypes.number.isRequired
+  }).isRequired
+};
 
 export default Team;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Team from './Team';
 import LeaderboardKey from './LeaderboardKey';
+import Team from './Team';
 
 const StyledTeamList = styled.ul`
   list-style: none;
@@ -10,19 +11,6 @@ const StyledTeamList = styled.ul`
 `;
 
 class Teams extends Component {
-  handleDuplicateRankings = (teams, team, index) => {
-    if (index === 0) {
-      return index + 1;
-    } else if (
-      Math.round(teams[index - 1].averageScore) ===
-      Math.round(team.averageScore)
-    ) {
-      return index;
-    } else {
-      return index + 1;
-    }
-  };
-
   render() {
     const { teams } = this.props;
     let rank;
@@ -37,16 +25,20 @@ class Teams extends Component {
             Math.round(teams[index - 1].averageScore) ===
             Math.round(team.averageScore)
           ) {
+            // eslint-disable-next-line
             rank = rank;
           } else {
             rank = index + 1;
           }
-
-          return <Team team={team} rank={rank} key={team.id} />;
+          return <Team team={team} rank={rank} key={team.teamId} />;
         })}
       </StyledTeamList>
     );
   }
 }
+
+Teams.propTypes = {
+  teams: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default Teams;
