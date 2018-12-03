@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuizzes, fetchQuiz } from '../actions';
-import { StyledQuizDateRow } from '../styles/StyledQuizDateRow';
+import PropTypes from 'prop-types';
 import Quiz from '../components/Quizzes/Quiz';
+import { StyledQuizDateRow } from '../styles/StyledQuizDateRow';
 
 class QuizzesView extends Component {
   componentDidMount() {
@@ -22,7 +23,6 @@ class QuizzesView extends Component {
   }
 
   onSelectChange = e => {
-    console.log('Working', e.target.value);
     this.props.history.push(`/quiz/${e.target.value}`);
   };
 
@@ -61,6 +61,16 @@ const mapStateToProps = state => {
     totalQuizzes: state.quizzes.quizzes,
     quiz: state.quizzes.quiz
   };
+};
+
+QuizzesView.propTypes = {
+  totalQuizzes: PropTypes.array.isRequired,
+  quiz: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    totalTeams: PropTypes.string.isRequired,
+    results: PropTypes.arrayOf(PropTypes.object).isRequired
+  })
 };
 
 export default connect(

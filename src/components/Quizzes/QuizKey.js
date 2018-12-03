@@ -10,7 +10,6 @@ const StyledKey = styled.li`
 `;
 
 class QuizKey extends Component {
-  state = {};
   render() {
     return (
       <StyledKey>

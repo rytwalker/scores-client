@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledQuizRow = styled.li`
   display: grid;
   grid-template-columns: 1fr 4fr repeat(10, 1fr);
   align-items: end;
-  /* justify-items: center; */
   padding: 2rem;
   font-size: 1.8rem;
   font-weight: 700;
   &:nth-child(odd) {
     background: #dfe6e9;
   }
-  /* .joker {
-    background: #74b9ff;
-    color: #fff;
-  } */
 `;
 
 class QuizRow extends Component {
@@ -39,5 +35,22 @@ class QuizRow extends Component {
     );
   }
 }
+
+QuizRow.propTypes = {
+  team: PropTypes.shape({
+    teamId: PropTypes.number.isRequired,
+    teamName: PropTypes.string.isRequired,
+    total: PropTypes.number.isRequired,
+    r1: PropTypes.number.isRequired,
+    r2: PropTypes.number.isRequired,
+    r3: PropTypes.number.isRequired,
+    r4: PropTypes.number.isRequired,
+    r5: PropTypes.number.isRequired,
+    r6: PropTypes.number.isRequired,
+    r7: PropTypes.number.isRequired,
+    r8: PropTypes.number.isRequired,
+    j: PropTypes.string.isRequired
+  }).isRequired
+};
 
 export default QuizRow;

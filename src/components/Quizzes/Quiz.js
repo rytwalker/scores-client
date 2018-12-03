@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import QuizRow from './QuizRow';
 import QuizKey from './QuizKey';
@@ -11,7 +12,7 @@ const StyledList = styled.ul`
 
 class Quiz extends Component {
   render() {
-    const { quiz, quizzes } = this.props;
+    const { quiz } = this.props;
     return (
       <div>
         <StyledList>
@@ -24,5 +25,14 @@ class Quiz extends Component {
     );
   }
 }
+
+Quiz.propTypes = {
+  quiz: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
+    totalTeams: PropTypes.string.isRequired,
+    results: PropTypes.arrayOf(PropTypes.object).isRequired
+  }).isRequired
+};
 
 export default Quiz;

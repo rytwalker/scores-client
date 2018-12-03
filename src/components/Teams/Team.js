@@ -22,7 +22,6 @@ const StyledTeam = styled.li`
 `;
 
 class Team extends Component {
-  state = {};
   render() {
     const { team, rank } = this.props;
     return (
