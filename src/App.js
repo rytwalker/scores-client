@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import AboutView from './views/AboutView';
 import AdminDashboardView from './views/AdminDashboardView';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import LeaderboardView from './views/LeaderboardView';
 import QuizzesView from './views/QuizzesView';
@@ -19,6 +20,7 @@ class App extends Component {
         <Route exact path="/new-quiz" component={Scorecard} />
         <Route exact path="/admin-dashboard" component={AdminDashboardView} />
         <Route exact path="/about" component={AboutView} />
+        <Footer />
       </div>
     );
   }
