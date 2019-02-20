@@ -10,9 +10,9 @@ body {
   margin: 0;
   padding: 0;
   font-size: 1.6rem;
-  font-family: 'Karla', sans-serif;
-  color: #2d3436;
-  background: #fff;
+  font-family: 'Oswald', sans-serif;
+  color: #2f2e2e;
+  background: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

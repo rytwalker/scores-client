@@ -1,11 +1,11 @@
 .App {
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .View {
   flex: 1;
-  margin-left: 20%;
 }
 
 .View h2 {
