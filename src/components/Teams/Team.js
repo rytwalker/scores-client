@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const StyledTeam = styled.li`
   display: grid;
-  ${'' /* grid-template-columns: 1fr 3fr 1fr 1fr 1fr; */}
   grid-template-columns: 1fr 3fr 1fr;
   align-items: center;
   padding: 3rem;
@@ -13,8 +12,15 @@ const StyledTeam = styled.li`
   &:nth-child(even) {
     background: #d5eee5;
   }
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+  }
   .num {
     font-size: 3rem;
+    justify-self: center;
+  }
+  .average-score {
+    color: #d5eee5;
     background: #a5d2c1;
     height: 6rem;
     width: 6rem;
@@ -24,8 +30,11 @@ const StyledTeam = styled.li`
     border-radius: 50%;
     text-align: center;
   }
-  .average-score {
-    color: #d5eee5;
+  .hidden {
+    display: none;
+    @media (min-width: 768px) {
+      display: block;
+    }
   }
 `;
 
@@ -61,10 +70,10 @@ class Team extends Component {
         <span className="average-score num">
           {Math.ceil(team.averageScore)}
         </span>
-        {/* <span className="games-played num">{team.gamesPlayed}</span>
-        <span className="score-percent num">
+        <span className="games-played num hidden">{team.gamesPlayed}</span>
+        <span className="score-percent num hidden">
           {Math.round(team.averagePercentCorrect)}%
-        </span> */}
+        </span>
       </StyledTeam>
     );
   }

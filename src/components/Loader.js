@@ -21,12 +21,48 @@ const grow = keyframes`
     transform: scale(.3);
   }
 
-  75% {
+  33% {
+    transform: scale(1);
+  }
+  94% {
     transform: scale(1);
   }
 
   100% {
+    transform: scale(.3);
+  }
+`;
+const grow2 = keyframes`
+  0% {
+    transform: scale(.3);
+  }
+
+  66% {
     transform: scale(1);
+  }
+
+  96% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(.3);
+  }
+`;
+const grow3 = keyframes`
+  0% {
+    transform: scale(.3);
+  }
+
+  90% {
+    transform: scale(1);
+  }
+
+  98% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(.3);
   }
 `;
 
@@ -42,6 +78,7 @@ const StyledLoader = styled.div`
     justify-content: space-between;
     width: 100px;
     .loader-ball {
+      transform: scale(0);
       height: 2rem;
       width: 2rem;
       border-radius: 50%;
@@ -49,17 +86,18 @@ const StyledLoader = styled.div`
     }
     .one {
       animation: ${grow} 0.75s 0s ease-in infinite;
-      ${'' /* animation-duration: .8s; */}
+      ${'' /* animation-duration: 3s;
+      animation-delay: -2s; */}
     }
     .two {
-      animation: ${grow} 0.75s 0s ease-in infinite;
-      animation-delay: -0.1s;
-      ${'' /* animation-duration: 1.3s; */}
+      animation: ${grow2} 0.75s 0s ease-in infinite;
+      ${'' /* animation-delay: -1s;
+      animation-duration: 2s; */}
     }
     .three {
-      animation: ${grow} 0.75s 0s ease-in infinite;
-      animation-delay: -0.2s;
-      ${'' /* animation-duration: 1s; */}
+      animation: ${grow3} 0.75s 0s ease-in infinite;
+      ${'' /* animation-delay: 2s;
+      animation-duration: 1s; */}
     }
   }
 `;
