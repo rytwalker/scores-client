@@ -9,8 +9,9 @@
 }
 
 .View h2 {
-  font-size: 5rem;
-  text-align: center;
+  font-size: 3rem;
+  padding: 0 3rem;
+  /* text-align: center; */
 }
 
 .login {
@@ -22,5 +23,5 @@
 }
 
 .about {
-  padding: 0 5rem;
+  /* padding: 0 5rem; */
 }

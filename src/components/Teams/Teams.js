@@ -22,8 +22,8 @@ class Teams extends Component {
           if (index === 0) {
             rank = index + 1;
           } else if (
-            Math.round(teams[index - 1].averageScore) ===
-            Math.round(team.averageScore)
+            Math.ceil(teams[index - 1].averageScore) ===
+            Math.ceil(team.averageScore)
           ) {
             // eslint-disable-next-line
             rank = rank;

@@ -4,37 +4,67 @@ import styled from 'styled-components';
 
 const StyledTeam = styled.li`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
-  align-items: end;
+  ${'' /* grid-template-columns: 1fr 3fr 1fr 1fr 1fr; */}
+  grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
   padding: 3rem;
-  font-size: 3.2rem;
+  font-size: 2.4rem;
   font-weight: 700;
   &:nth-child(even) {
-    background: #dfe6e9;
+    background: #d5eee5;
   }
   .num {
-    font-size: 4rem;
+    font-size: 3rem;
+    background: #a5d2c1;
+    height: 6rem;
+    width: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
     text-align: center;
   }
   .average-score {
-    color: #74b9ff;
+    color: #d5eee5;
   }
 `;
 
 class Team extends Component {
+  state = { reduceTextSize: false };
   render() {
-    const { team, rank } = this.props;
+    const { reduceTextSize } = this.state;
+    let { team, rank } = this.props;
+
+    if (rank === 1) {
+      rank = '🥇';
+    } else if (rank === 2) {
+      rank = '🥈';
+    } else if (rank === 3) {
+      rank = '🥉';
+    } else {
+      rank = rank + '.';
+    }
+
+    // if (team.teamName.length >= 20) {
+    //   this.setState({ reduceTextSize: true });
+    // }
+
     return (
       <StyledTeam>
         <span className="rank">{rank}</span>
-        <span className="team-name">{team.teamName}</span>
-        <span className="average-score num">
-          {Math.round(team.averageScore)}
+        <span
+          className="team-name"
+          style={reduceTextSize ? { fontSize: '2rem' } : null}
+        >
+          {team.teamName}
         </span>
-        <span className="games-played num">{team.gamesPlayed}</span>
+        <span className="average-score num">
+          {Math.ceil(team.averageScore)}
+        </span>
+        {/* <span className="games-played num">{team.gamesPlayed}</span>
         <span className="score-percent num">
           {Math.round(team.averagePercentCorrect)}%
-        </span>
+        </span> */}
       </StyledTeam>
     );
   }
