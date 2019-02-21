@@ -9,6 +9,11 @@ const StyledKey = styled.li`
   font-weight: 400;
   @media (min-width: 768px) {
     grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    width: 95%;
+    margin: 0 auto;
+  }
+  @media (min-width: 1200px) {
+    width: 85%;
   }
   .num {
     text-align: center;
