@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuizzes, fetchQuiz } from '../actions';
 import PropTypes from 'prop-types';
+import Loader from '../components/Loader';
 import Quiz from '../components/Quizzes/Quiz';
 import { StyledQuizDateRow } from '../styles/StyledQuizDateRow';
 
@@ -30,11 +31,11 @@ class QuizzesView extends Component {
     const { quiz, totalQuizzes } = this.props;
     return (
       <div className="View">
-        <h2>LATEST QUIZ</h2>
         {!quiz ? (
-          <div>Loading Quiz...</div>
+          <Loader />
         ) : (
           <div>
+            <h2>LATEST QUIZ</h2>
             <StyledQuizDateRow>
               <select
                 name="quizzes"

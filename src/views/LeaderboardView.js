@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTeams } from '../actions';
 import PropTypes from 'prop-types';
+import Loader from '../components/Loader';
 import Teams from '../components/Teams/Teams';
 
 class LeaderboardView extends Component {
@@ -14,11 +15,13 @@ class LeaderboardView extends Component {
     const { teams } = this.props;
     return (
       <div className="View">
-        <h2>LEADERBOARD</h2>
         {!teams.length ? (
-          <div>Loading Leaderboard...</div>
+          <Loader />
         ) : (
-          <Teams teams={teams} />
+          <React.Fragment>
+            <h2>LEADERBOARD</h2>
+            <Teams teams={teams} />
+          </React.Fragment>
         )}
       </div>
     );

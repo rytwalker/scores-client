@@ -12,16 +12,16 @@ const Footer = () => {
   return (
     <StyledFooter>
       <nav className="footer-nav">
-        <NavLink to="/">
+        <NavLink className="leaderboard-link" exact to="/">
           <FontAwesomeIcon icon={faTrophy} />
         </NavLink>
-        <NavLink exact to="/quiz/:id">
+        <NavLink className="quizzes-link" exact to="/quiz/:id">
           <FontAwesomeIcon icon={faThList} />
         </NavLink>
-        <NavLink exact to="/new-quiz">
+        <NavLink className="teams-link" exact to="/new-quiz">
           <FontAwesomeIcon icon={faUsers} />
         </NavLink>
-        <NavLink to="/about">
+        <NavLink className="about-link" to="/about">
           <FontAwesomeIcon icon={faQuestionCircle} />{' '}
         </NavLink>
       </nav>
@@ -46,12 +46,24 @@ const StyledFooter = styled.footer`
       justify-content: center;
       height: 100%;
       width: 100%;
-      font-size: 4rem;
+      font-size: 3.2rem;
       color: #fafafa;
       transition: all 0.2s;
       &:hover {
         background-color: #555;
       }
+    }
+    .leaderboard-link:hover {
+      color: #f9db79;
+    }
+    .quizzes-link:hover {
+      color: #b5e8d5;
+    }
+    .teams-link:hover {
+      color: #2f2e2e;
+    }
+    .about-link:hover {
+      color: #dc000b;
     }
 
     .active {
