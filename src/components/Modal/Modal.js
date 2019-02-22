@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Portal from '../Portal/Portal';
+import { Portal } from '../Utilities';
 
 class Modal extends Component {
   state = {};
@@ -34,8 +34,9 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalCard = styled.div`
-  position: relative;
+  ${'' /* position: relative; */}
   background: #fafafa;
+  position: fixed;
   width: 900px;
   height: 500px;
   border-radius: 2.5px;
@@ -47,6 +48,18 @@ const CloseButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  background: none;
+  border: none;
+  padding: calc(45px - 2rem);
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fafafa;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: #b5e8d5;
+  }
 `;
 
 const Background = styled.div`
