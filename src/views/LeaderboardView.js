@@ -18,10 +18,10 @@ class LeaderboardView extends Component {
         {!teams.length ? (
           <Loader />
         ) : (
-          <React.Fragment>
+          <>
             <h2>LEADERBOARD</h2>
             <Teams teams={teams} />
-          </React.Fragment>
+          </>
         )}
       </div>
     );

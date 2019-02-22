@@ -1,6 +1,71 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Modal from '../Modal/Modal';
+import Toggle from '../Toggle/Toggle';
+
+class Team extends Component {
+  state = { reduceTextSize: false };
+  render() {
+    const { reduceTextSize } = this.state;
+    let { team, rank } = this.props;
+
+    if (rank === 1) {
+      rank = '🥇';
+    } else if (rank === 2) {
+      rank = '🥈';
+    } else if (rank === 3) {
+      rank = '🥉';
+    } else {
+      rank = rank + '.';
+    }
+
+    // if (team.teamName.length >= 20) {
+    //   this.setState({ reduceTextSize: true });
+    // }
+
+    return (
+      <StyledTeam>
+        <div className="container">
+          <span className="rank">{rank}</span>
+          <Toggle>
+            {({ on, toggle }) => (
+              <>
+                <span
+                  onClick={toggle}
+                  className="team-name"
+                  style={reduceTextSize ? { fontSize: '2rem' } : null}
+                >
+                  {team.teamName}
+                </span>
+                <Modal on={on} toggle={toggle}>
+                  {team.teamName}
+                </Modal>
+              </>
+            )}
+          </Toggle>
+
+          <span className="average-score num">
+            {Math.ceil(team.averageScore)}
+          </span>
+          <span className="games-played num hidden">{team.gamesPlayed}</span>
+          <span className="score-percent num hidden">
+            {Math.round(team.averagePercentCorrect)}%
+          </span>
+        </div>
+      </StyledTeam>
+    );
+  }
+}
+
+Team.propTypes = {
+  team: PropTypes.shape({
+    teamId: PropTypes.number.isRequired,
+    teamName: PropTypes.string.isRequired,
+    gamesPlayed: PropTypes.string.isRequired,
+    averagePercentCorrect: PropTypes.number.isRequired
+  }).isRequired
+};
 
 const StyledTeam = styled.li`
   &:nth-child(even) {
@@ -21,6 +86,15 @@ const StyledTeam = styled.li`
     @media (min-width: 1200px) {
       width: 85%;
       font-size: 2.8rem;
+    }
+  }
+  .team-name {
+    cursor: pointer;
+    transition: all 0.2s;
+    &:hover {
+      color: #a5d2c1;
+      text-decoration: underline;
+      ${'' /* background: #a5d2c1; */}
     }
   }
   .num {
@@ -54,57 +128,5 @@ const StyledTeam = styled.li`
     }
   }
 `;
-
-class Team extends Component {
-  state = { reduceTextSize: false };
-  render() {
-    const { reduceTextSize } = this.state;
-    let { team, rank } = this.props;
-
-    if (rank === 1) {
-      rank = '🥇';
-    } else if (rank === 2) {
-      rank = '🥈';
-    } else if (rank === 3) {
-      rank = '🥉';
-    } else {
-      rank = rank + '.';
-    }
-
-    // if (team.teamName.length >= 20) {
-    //   this.setState({ reduceTextSize: true });
-    // }
-
-    return (
-      <StyledTeam>
-        <div className="container">
-          <span className="rank">{rank}</span>
-          <span
-            className="team-name"
-            style={reduceTextSize ? { fontSize: '2rem' } : null}
-          >
-            {team.teamName}
-          </span>
-          <span className="average-score num">
-            {Math.ceil(team.averageScore)}
-          </span>
-          <span className="games-played num hidden">{team.gamesPlayed}</span>
-          <span className="score-percent num hidden">
-            {Math.round(team.averagePercentCorrect)}%
-          </span>
-        </div>
-      </StyledTeam>
-    );
-  }
-}
-
-Team.propTypes = {
-  team: PropTypes.shape({
-    teamId: PropTypes.number.isRequired,
-    teamName: PropTypes.string.isRequired,
-    gamesPlayed: PropTypes.string.isRequired,
-    averagePercentCorrect: PropTypes.number.isRequired
-  }).isRequired
-};
 
 export default Team;
