@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { StyledSidebar } from '../styles/StyledSidebar';
+import { StyledSidebar } from '../../styles/StyledSidebar';
 
 class Sidebar extends Component {
   state = {};

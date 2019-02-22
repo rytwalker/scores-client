@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchQuizzes, fetchQuiz } from '../actions';
 import PropTypes from 'prop-types';
-import Loader from '../components/Loader';
+import Loader from '../components/Loader/Loader';
 import Quiz from '../components/Quizzes/Quiz';
 import { StyledQuizDateRow } from '../styles/StyledQuizDateRow';
 
