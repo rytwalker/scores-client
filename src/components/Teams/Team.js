@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Card from '../Card/Card';
 import Modal from '../Modal/Modal';
-import { Toggle } from '../Utilities';
+import { colors, flexCenter, Toggle } from 'Utilities';
 
 class Team extends Component {
   state = { reduceTextSize: false };
@@ -70,7 +70,7 @@ Team.propTypes = {
 
 const StyledTeam = styled.li`
   &:nth-child(even) {
-    background: #d5eee5;
+    background: ${colors.primaryLight};
   }
   .container {
     display: grid;
@@ -93,9 +93,8 @@ const StyledTeam = styled.li`
     cursor: pointer;
     transition: all 0.2s;
     &:hover {
-      color: #a5d2c1;
+      color: ${colors.primaryDark};
       text-decoration: underline;
-      ${'' /* background: #a5d2c1; */}
     }
   }
   .num {
@@ -107,13 +106,11 @@ const StyledTeam = styled.li`
     }
   }
   .average-score {
-    color: #d5eee5;
-    background: #a5d2c1;
+    color: ${colors.primaryLight};
+    background: ${colors.primaryDark};
     height: 6rem;
     width: 6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter()};
     border-radius: 50%;
     text-align: center;
     @media (min-width: 1200px) {

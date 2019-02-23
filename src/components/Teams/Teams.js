@@ -4,12 +4,6 @@ import styled from 'styled-components';
 import LeaderboardKey from './LeaderboardKey';
 import Team from './Team';
 
-const StyledTeamList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
 class Teams extends Component {
   render() {
     const { teams } = this.props;
@@ -36,6 +30,12 @@ class Teams extends Component {
     );
   }
 }
+
+const StyledTeamList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+`;
 
 Teams.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.object).isRequired

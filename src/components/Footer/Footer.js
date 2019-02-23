@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navigation from '../Navigation/Navigation';
+import { colors, flexCenter } from 'Utilities';
 
 const Footer = () => {
   return (
@@ -12,15 +13,13 @@ const Footer = () => {
 };
 
 const StyledFooter = styled.footer`
-  height: 67px;
   width: 100%;
-  background-color: #2f2e2e;
+  height: 67px;
   position: fixed;
   bottom: 0;
+  background-color: ${colors.black};
   @media (min-width: 1020px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter()};
     position: static;
   }
 
@@ -28,7 +27,7 @@ const StyledFooter = styled.footer`
     display: none;
     @media (min-width: 1040px) {
       display: block;
-      color: #fafafa;
+      color: ${colors.white};
     }
   }
 `;

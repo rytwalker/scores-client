@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+class LeaderboardKey extends Component {
+  state = {};
+  render() {
+    return (
+      <StyledKey>
+        <span className="rank"> Rank</span>
+        <span className="team-name">Team Name</span>
+        <span className="average-score num">Average Score</span>
+        <span className="games-played num hidden">Games Played</span>
+        <span className="score-percent num hidden">Average % Correct</span>
+      </StyledKey>
+    );
+  }
+}
+
 const StyledKey = styled.li`
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -25,20 +40,5 @@ const StyledKey = styled.li`
     }
   }
 `;
-
-class LeaderboardKey extends Component {
-  state = {};
-  render() {
-    return (
-      <StyledKey>
-        <span className="rank"> Rank</span>
-        <span className="team-name">Team Name</span>
-        <span className="average-score num">Average Score</span>
-        <span className="games-played num hidden">Games Played</span>
-        <span className="score-percent num hidden">Average % Correct</span>
-      </StyledKey>
-    );
-  }
-}
 
 export default LeaderboardKey;

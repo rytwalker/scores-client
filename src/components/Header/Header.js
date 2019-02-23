@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navigation from '../Navigation/Navigation';
+import { colors, flexCenter } from 'Utilities';
 
 const Header = () => {
   return (
@@ -15,13 +16,10 @@ const Header = () => {
 
 const StyledHeader = styled.header`
   height: 90px;
-  background-color: #2f2e2e;
+  background-color: ${colors.black};
   .container {
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    ${flexCenter()};
     width: 90%;
     margin: 0 auto;
     @media (min-width: 1020px) {
@@ -31,7 +29,7 @@ const StyledHeader = styled.header`
 
   h1 {
     font-family: 'Lobster Two', cursive;
-    color: #fafafa;
+    color: ${colors.white};
     font-size: 5rem;
   }
 `;

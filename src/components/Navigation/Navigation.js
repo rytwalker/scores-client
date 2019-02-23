@@ -8,6 +8,7 @@ import {
   faTrophy,
   faUsers
 } from '@fortawesome/free-solid-svg-icons';
+import { colors, flexCenter, transition } from 'Utilities';
 
 class Navigation extends Component {
   render() {
@@ -43,14 +44,12 @@ const StyledNavigation = styled.nav`
     display: ${props => (props.footer ? 'none' : 'flex')};
   }
   a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    ${flexCenter()}
     height: 100%;
     width: 100%;
     font-size: 2.8rem;
-    color: #fafafa;
-    transition: all 0.2s;
+    color: ${colors.white};
+    ${transition({})};
     text-decoration: none;
 
     @media (min-width: 1020px) {
@@ -58,40 +57,39 @@ const StyledNavigation = styled.nav`
       border-bottom: 5px solid rgba(255, 255, 255, 0);
     }
     &:hover {
-      background-color: #555;
-      border-bottom: 5px solid #b5e8d5;
+      background-color: ${colors.blackFaded};
+      border-bottom: 5px solid ${colors.primary};
     }
     .link-text {
       display: none;
       @media (min-width: 1020px) {
         display: inline;
         font-size: 2.4rem;
+        color: ${colors.primary};
         text-transform: uppercase;
-        margin-left: 1rem;
-        color: #b5e8d5;
         text-decoration: none;
         border-bottom: none;
+        margin-left: 1rem;
       }
     }
   }
   .leaderboard-link:hover {
-    color: #f9db79;
+    color: ${colors.gold};
   }
   .quizzes-link:hover {
-    color: #b5e8d5;
+    color: ${colors.primary};
   }
   .teams-link:hover {
-    color: #2f2e2e;
+    color: ${colors.black};
   }
   .about-link:hover {
-    color: #dc000b;
+    color: ${colors.red};
   }
 
   .active {
-    color: #f9db79;
+    color: ${colors.gold};
     @media (min-width: 1020px) {
-      ${'' /* background-color: #555; */}
-      border-bottom: 5px solid #b5e8d5;
+      border-bottom: 5px solid ${colors.primary};
     }
   }
 `;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Portal } from '../Utilities';
+import { Portal } from 'Utilities';
 
 class Modal extends Component {
   state = {};
@@ -40,6 +40,7 @@ const ModalCard = styled.div`
   width: 900px;
   height: 500px;
   border-radius: 2.5px;
+  overflow: hidden;
   box-shadow: 0 5px 28px -5px rgba(0, 0, 0, 0.5);
   z-index: 1000;
 `;
