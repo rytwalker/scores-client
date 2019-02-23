@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import logo from '../../img/logo.svg';
+import { colors, flexCenter } from 'Utilities';
 
 const Loader = () => {
   return (
@@ -67,11 +68,9 @@ const grow3 = keyframes`
 `;
 
 const StyledLoader = styled.div`
-  display: flex;
-  min-height: calc(100vh - 157px);
-  align-items: center;
-  justify-content: center;
+  ${flexCenter()};
   flex-direction: column;
+  min-height: calc(100vh - 157px);
   .loading-balls-container {
     margin: 2rem 0;
     display: flex;
@@ -82,22 +81,16 @@ const StyledLoader = styled.div`
       height: 2rem;
       width: 2rem;
       border-radius: 50%;
-      background-color: #2f2e2e;
+      background-color: ${colors.black};
     }
     .one {
       animation: ${grow} 0.75s 0s ease-in infinite;
-      ${'' /* animation-duration: 3s;
-      animation-delay: -2s; */}
     }
     .two {
       animation: ${grow2} 0.75s 0s ease-in infinite;
-      ${'' /* animation-delay: -1s;
-      animation-duration: 2s; */}
     }
     .three {
       animation: ${grow3} 0.75s 0s ease-in infinite;
-      ${'' /* animation-delay: 2s;
-      animation-duration: 1s; */}
     }
   }
 `;

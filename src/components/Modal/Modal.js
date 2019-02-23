@@ -1,26 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useTransition, animated } from 'react-spring';
 import styled from 'styled-components';
 import { Portal } from 'Utilities';
 
-class Modal extends Component {
-  state = {};
-  render() {
-    const { children, on, toggle } = this.props;
-    return (
-      <Portal>
-        {on && (
-          <ModalWrapper>
-            <ModalCard>
-              <CloseButton onClick={toggle}>X</CloseButton>
-              <div>{children}</div>
-            </ModalCard>
-            <Background onClick={toggle} />
-          </ModalWrapper>
-        )}
-      </Portal>
-    );
-  }
-}
+const Modal = ({ children, on, toggle }) => {
+  const modalTransition = useTransition(on, null, {
+    from: { opacity: 0, y: 200 },
+    enter: { opacity: 1, y: 0 },
+    leave: { opacity: 0, y: 200 }
+  });
+
+  return (
+    <Portal>
+      {modalTransition.map(
+        ({ item, key, props }) =>
+          item && (
+            <ModalWrapper key={key}>
+              <ModalCard
+                style={{
+                  opacity: props.opacity,
+                  transform: props.y.interpolate(
+                    y => `translate3d(0, ${y}px, 0)`
+                  )
+                }}
+              >
+                <CloseButton onClick={toggle}>X</CloseButton>
+                <div>{children}</div>
+              </ModalCard>
+              <Background
+                key={key}
+                style={{ opacity: props.opacity }}
+                onClick={toggle}
+              />
+            </ModalWrapper>
+          )
+      )}
+    </Portal>
+  );
+};
 
 const ModalWrapper = styled.div`
   position: absolute;
@@ -33,7 +50,7 @@ const ModalWrapper = styled.div`
   justify-content: center;
 `;
 
-const ModalCard = styled.div`
+const ModalCard = styled(animated.div)`
   ${'' /* position: relative; */}
   background: #fafafa;
   position: fixed;
@@ -63,7 +80,7 @@ const CloseButton = styled.button`
   }
 `;
 
-const Background = styled.div`
+const Background = styled(animated.div)`
   position: absolute;
   width: 100%;
   height: 100%;

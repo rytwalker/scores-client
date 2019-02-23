@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { colors } from 'Utilities';
 
 class Card extends Component {
   state = {};
@@ -101,8 +102,8 @@ const CardContainer = styled.div`
 `;
 
 const CardHeader = styled.header`
-  background: #2f2e2e;
-  color: #fafafa;
+  background: ${colors.black};
+  color: ${colors.white};
   height: 70px;
   margin-bottom: 2rem;
 `;
@@ -117,7 +118,6 @@ const CardHalf = styled.div`
   display: flex;
   width: 48%;
   flex-direction: column;
-  ${'' /* border: 1px solid black; */}
   .placeholder {
     width: 100%;
     height: 225px;
@@ -128,9 +128,9 @@ const CardHalf = styled.div`
 const StatsPlaced = styled.div`
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
   font-size: 2.2rem;
   margin-bottom: 2rem;
   h3,
@@ -146,7 +146,7 @@ const StatsPlaced = styled.div`
   }
 
   .medal {
-    color: #a5d2c1;
+    color: ${colors.primaryDark};
     span {
       margin-left: 0.7rem;
     }
@@ -155,7 +155,7 @@ const StatsPlaced = styled.div`
     margin-bottom: 1rem;
     width: 100%;
     .green {
-      color: #a5d2c1;
+      color: ${colors.primaryDark};
       margin-right: 1rem;
     }
   }
