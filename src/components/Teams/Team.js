@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Card from '../Card/Card';
 import Modal from '../Modal/Modal';
 import { Toggle } from '../Utilities';
 
@@ -39,13 +40,7 @@ class Team extends Component {
                   {team.teamName}
                 </span>
                 <Modal on={on} toggle={toggle}>
-                  <StyledTeamCard>
-                    <div className="card-header">
-                      <div className="card-container">
-                        <h2>{team.teamName}</h2>
-                      </div>
-                    </div>
-                  </StyledTeamCard>
+                  <Card />
                 </Modal>
               </>
             )}
@@ -72,26 +67,6 @@ Team.propTypes = {
     averagePercentCorrect: PropTypes.number.isRequired
   }).isRequired
 };
-
-const StyledTeamCard = styled.div`
-  .card-header {
-    background: #2f2e2e;
-    color: #fafafa;
-    height: 70px;
-    .card-container {
-      width: 90%;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      height: 100%;
-      h2 {
-        font-size: 3.2rem;
-        font-weight: 700;
-        margin: 0;
-      }
-    }
-  }
-`;
 
 const StyledTeam = styled.li`
   &:nth-child(even) {
