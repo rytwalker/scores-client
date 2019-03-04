@@ -17,6 +17,7 @@ const StyledFooter = styled.footer`
   height: 67px;
   position: fixed;
   bottom: 0;
+  z-index: 1001;
   background-color: ${colors.black};
   @media (min-width: 1020px) {
     ${flexCenter()};

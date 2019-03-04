@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { colors } from 'Utilities';
+import {
+  FlexibleWidthXYPlot,
+  XAxis,
+  YAxis,
+  HorizontalGridLines,
+  VerticalGridLines,
+  MarkSeries
+} from 'react-vis';
 
 class Card extends Component {
   state = {};
@@ -15,7 +23,19 @@ class Card extends Component {
         <CardContainer>
           <CardBody>
             <CardHalf>
-              <div className="placeholder" />
+              <FlexibleWidthXYPlot height={255}>
+                <HorizontalGridLines />
+                <VerticalGridLines />
+                <MarkSeries
+                  data={[
+                    { x: 1, y: 70, color: colors.primaryDark },
+                    { x: 2, y: 69, color: colors.primaryDark },
+                    { x: 3, y: 81, color: colors.primaryDark }
+                  ]}
+                />
+                <XAxis title="Quizzes" />
+                <YAxis title="Scores" />
+              </FlexibleWidthXYPlot>
             </CardHalf>
             <CardHalf>
               <StatsPlaced>
@@ -112,12 +132,16 @@ const CardBody = styled.div`
   justify-content: space-between;
   width: 100%;
   height: 100%;
+  flex-wrap: wrap;
 `;
 
 const CardHalf = styled.div`
   display: flex;
-  width: 48%;
+  width: 100%;
   flex-direction: column;
+  @media (min-width: 900px) {
+    width: 48%;
+  }
   .placeholder {
     width: 100%;
     height: 225px;
@@ -141,9 +165,9 @@ const StatsPlaced = styled.div`
     margin: 0;
     margin-bottom: 1rem;
   }
-  h4 {
+  /* h4 {
     font-size: ;
-  }
+  } */
 
   .medal {
     color: ${colors.primaryDark};

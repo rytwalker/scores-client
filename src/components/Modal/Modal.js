@@ -53,13 +53,19 @@ const ModalWrapper = styled.div`
 const ModalCard = styled(animated.div)`
   ${'' /* position: relative; */}
   background: #fafafa;
-  position: fixed;
-  width: 900px;
-  height: 500px;
+  max-width: 900px;
+  width: 100%;
+  min-height: 100%;
   border-radius: 2.5px;
-  overflow: hidden;
-  box-shadow: 0 5px 28px -5px rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  @media (min-width: 900px) {
+    margin-top: -25px;
+    min-height: 0;
+    height: 500px;
+    position: fixed;
+    box-shadow: 0 5px 28px -5px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+  }
 `;
 
 const CloseButton = styled.button`
