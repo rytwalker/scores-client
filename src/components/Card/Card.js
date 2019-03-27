@@ -1,18 +1,35 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { colors } from 'Utilities';
-import {
-  FlexibleWidthXYPlot,
-  XAxis,
-  YAxis,
-  HorizontalGridLines,
-  VerticalGridLines,
-  MarkSeries
-} from 'react-vis';
+import { RadarChart, Hint } from 'react-vis';
+
+const DATA = [
+  {
+    r1: 5,
+    r2: 10,
+    r3: 5,
+    r4: 5,
+    r5: 5,
+    r6: 5,
+    r7: 7,
+    r8: 9,
+    fill: colors.primaryLight,
+    stroke: '#cccccc'
+  }
+];
+
+const tipStyle = {
+  display: 'flex',
+  color: '#fff',
+  background: '#000',
+  alignItems: 'center',
+  padding: '5px'
+};
 
 class Card extends Component {
-  state = {};
+  state = { hoveredCell: false };
   render() {
+    const { hoveredCell } = this.state;
     return (
       <>
         <CardHeader>
@@ -23,19 +40,95 @@ class Card extends Component {
         <CardContainer>
           <CardBody>
             <CardHalf>
-              <FlexibleWidthXYPlot height={255}>
-                <HorizontalGridLines />
-                <VerticalGridLines />
-                <MarkSeries
-                  data={[
-                    { x: 1, y: 70, color: colors.primaryDark },
-                    { x: 2, y: 69, color: colors.primaryDark },
-                    { x: 3, y: 81, color: colors.primaryDark }
-                  ]}
-                />
-                <XAxis title="Quizzes" />
-                <YAxis title="Scores" />
-              </FlexibleWidthXYPlot>
+              <RadarChart
+                data={DATA}
+                tickFormat={t => {
+                  return '';
+                }}
+                domains={[
+                  {
+                    name: 'R1',
+                    getValue: d => d.r1,
+                    domain: [0, 16],
+                    tickFormat: t => {
+                      if (t < 16 && t > 0) {
+                        return Math.round(t);
+                      }
+                      return '';
+                    }
+                  },
+                  {
+                    name: 'R2',
+                    domain: [0, 16],
+                    getValue: d => d.r2
+                  },
+                  { name: 'R3', domain: [0, 8], getValue: d => d.r3 },
+                  {
+                    name: 'R4',
+                    domain: [0, 8],
+                    getValue: d => d.r4
+                  },
+                  {
+                    name: 'R5',
+                    domain: [0, 8],
+                    getValue: d => d.r5
+                  },
+                  {
+                    name: 'R6',
+                    domain: [0, 8],
+                    getValue: d => d.r6
+                  },
+                  {
+                    name: 'R7',
+                    domain: [0, 8],
+                    getValue: d => d.r7
+                  },
+                  {
+                    name: 'R8',
+                    domain: [0, 16],
+                    getValue: d => d.r8
+                  }
+                ]}
+                width={350}
+                height={350}
+                onValueMouseOver={v => {
+                  this.setState({ hoveredCell: v });
+                }}
+                onValueMouseOut={v => this.setState({ hoveredCell: false })}
+                style={{
+                  polygons: {
+                    strokeWidth: 1,
+                    strokeOpacity: 0.8,
+                    fillOpacity: 0.8
+                  },
+                  labels: {
+                    textAnchor: 'middle'
+                  },
+                  axes: {
+                    line: {
+                      fillOpacity: 0.8,
+                      strokeWidth: 0.5,
+                      strokeOpacity: 0.8
+                    },
+                    ticks: {
+                      fillOpacity: 0,
+                      strokeOpacity: 0
+                    },
+                    text: {}
+                  }
+                }}
+                colorRange={['transparent']}
+                hideInnerMostValues={false}
+                renderAxesOverPolygons={true}
+              >
+                {hoveredCell && hoveredCell.dataName === 'Mercedes' && (
+                  <Hint value={hoveredCell}>
+                    <div style={tipStyle}>
+                      {hoveredCell.domain}: {hoveredCell.value}
+                    </div>
+                  </Hint>
+                )}
+              </RadarChart>
             </CardHalf>
             <CardHalf>
               <StatsPlaced>
