@@ -51,7 +51,9 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalCard = styled(animated.div)`
-  ${'' /* position: relative; */}
+  /* position: fixed;
+  top: 0; */
+  margin-top: 146px;
   background: #fafafa;
   max-width: 900px;
   width: 100%;
