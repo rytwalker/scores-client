@@ -18,14 +18,14 @@ class Navigation extends Component {
           <FontAwesomeIcon icon={faTrophy} />
           <span className="link-text">Leaderboard</span>
         </NavLink>
-        {/* <NavLink className="quizzes-link" exact to="/quiz/:id">
+        <NavLink className="quizzes-link" exact to="/quiz/:id">
           <FontAwesomeIcon icon={faThList} />
           <span className="link-text">Quizzes</span>
         </NavLink>
-        <NavLink className="teams-link" exact to="/new-quiz">
+        <NavLink className="teams-link" exact to="/teams">
           <FontAwesomeIcon icon={faUsers} />
           <span className="link-text">Teams</span>
-        </NavLink> */}
+        </NavLink>
         <NavLink className="about-link" to="/about">
           <FontAwesomeIcon icon={faQuestionCircle} />{' '}
           <span className="link-text">About</span>

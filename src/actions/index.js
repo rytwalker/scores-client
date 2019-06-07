@@ -19,7 +19,7 @@ export const UPDATE_TOTAL_SCORE = 'UPDATE_TOTAL_SCORE';
 export const fetchTeams = () => dispatch => {
   dispatch({ type: FETCHING_TEAMS });
   axios
-    .get('https://suzies-scores.herokuapp.com/api/teams')
+    .get('http://127.0.0.1:8000/api/teams/?format=json')
     .then(res => {
       dispatch({ type: FETCHING_TEAMS_SUCCESS, payload: res.data });
     })

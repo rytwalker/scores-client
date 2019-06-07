@@ -1,152 +1,65 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { colors } from 'Utilities';
-import { RadarChart, Hint } from 'react-vis';
-
-const DATA = [
-  {
-    r1: 5,
-    r2: 10,
-    r3: 5,
-    r4: 5,
-    r5: 5,
-    r6: 5,
-    r7: 7,
-    r8: 9,
-    fill: colors.primaryLight,
-    stroke: '#cccccc'
-  }
-];
-
-const tipStyle = {
-  display: 'flex',
-  color: '#fff',
-  background: '#000',
-  alignItems: 'center',
-  padding: '5px'
-};
+const BarChart = require('react-chartjs').Radar;
+console.log(BarChart);
 
 class Card extends Component {
-  state = { hoveredCell: false };
   render() {
-    const { hoveredCell } = this.state;
+    const { team } = this.props;
+    const roundData = {
+      labels: ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8'],
+      datasets: [
+        {
+          label: 'Average Points Per Round',
+          fillColor: 'rgba(181, 232, 213, 0.5)',
+          strokeColor: 'rgba(181, 232, 213, 0.8)',
+          highlightFill: 'rgba(181, 232, 213, 0.75)',
+          highlightStroke: 'rgba(181, 232, 213, 1)',
+          data: [
+            team.average_r1_score,
+            team.average_r2_score,
+            team.average_r3_score,
+            team.average_r4_score,
+            team.average_r5_score,
+            team.average_r6_score,
+            team.average_r7_score,
+            team.average_r8_score
+          ]
+        }
+      ]
+    };
     return (
       <>
         <CardHeader>
           <CardContainer>
-            <h2>Gnomies</h2>
+            <h2>{team.team_name}</h2>
           </CardContainer>
         </CardHeader>
         <CardContainer>
           <CardBody>
             <CardHalf>
-              <RadarChart
-                data={DATA}
-                tickFormat={t => {
-                  return '';
-                }}
-                domains={[
-                  {
-                    name: 'R1',
-                    getValue: d => d.r1,
-                    domain: [0, 16],
-                    tickFormat: t => {
-                      if (t < 16 && t > 0) {
-                        return Math.round(t);
-                      }
-                      return '';
-                    }
-                  },
-                  {
-                    name: 'R2',
-                    domain: [0, 16],
-                    getValue: d => d.r2
-                  },
-                  { name: 'R3', domain: [0, 8], getValue: d => d.r3 },
-                  {
-                    name: 'R4',
-                    domain: [0, 8],
-                    getValue: d => d.r4
-                  },
-                  {
-                    name: 'R5',
-                    domain: [0, 8],
-                    getValue: d => d.r5
-                  },
-                  {
-                    name: 'R6',
-                    domain: [0, 8],
-                    getValue: d => d.r6
-                  },
-                  {
-                    name: 'R7',
-                    domain: [0, 8],
-                    getValue: d => d.r7
-                  },
-                  {
-                    name: 'R8',
-                    domain: [0, 16],
-                    getValue: d => d.r8
-                  }
-                ]}
-                width={350}
-                height={350}
-                onValueMouseOver={v => {
-                  this.setState({ hoveredCell: v });
-                }}
-                onValueMouseOut={v => this.setState({ hoveredCell: false })}
-                style={{
-                  polygons: {
-                    strokeWidth: 1,
-                    strokeOpacity: 0.8,
-                    fillOpacity: 0.8
-                  },
-                  labels: {
-                    textAnchor: 'middle'
-                  },
-                  axes: {
-                    line: {
-                      fillOpacity: 0.8,
-                      strokeWidth: 0.5,
-                      strokeOpacity: 0.8
-                    },
-                    ticks: {
-                      fillOpacity: 0,
-                      strokeOpacity: 0
-                    },
-                    text: {}
-                  }
-                }}
-                colorRange={['transparent']}
-                hideInnerMostValues={false}
-                renderAxesOverPolygons={true}
-              >
-                {hoveredCell && hoveredCell.dataName === 'Mercedes' && (
-                  <Hint value={hoveredCell}>
-                    <div style={tipStyle}>
-                      {hoveredCell.domain}: {hoveredCell.value}
-                    </div>
-                  </Hint>
-                )}
-              </RadarChart>
+              <h3>Average Points Per Round</h3>
+              {/* A new chart is in town */}
+              <BarChart data={roundData} height="225" />
             </CardHalf>
             <CardHalf>
               <StatsPlaced>
                 <h3>#winning</h3>
                 <div className="medal">
-                  3
+                  {team.first_place}
                   <span role="img" aria-label="first-place">
                     🥇
                   </span>
                 </div>
                 <div className="medal">
-                  5
+                  {team.second_place}
                   <span role="img" aria-label="second-place">
                     🥈
                   </span>
                 </div>
                 <div className="medal">
-                  8
+                  {team.third_place}
                   <span role="img" aria-label="third-place">
                     🥉
                   </span>
@@ -154,28 +67,30 @@ class Card extends Component {
               </StatsPlaced>
               <StatsPlaced>
                 <div className="basic-stats">
-                  <span className="green">70</span>
+                  <span className="green">{Math.ceil(team.average_score)}</span>
                   points average score
                 </div>
                 <div className="basic-stats">
-                  <span className="green">78%</span>
+                  <span className="green">
+                    {Math.round(team.average_percent_correct)}%
+                  </span>
                   average number correct
                 </div>
                 <div className="basic-stats">
-                  <span className="green">24</span>
-                  quizzes played
+                  <span className="green">{team.games_played}</span>
+                  {team.games_played === 1 ? 'quiz played' : 'quizzes played'}
                 </div>
               </StatsPlaced>
               <StatsPlaced>
                 <h4>Personal Bests</h4>
                 <div className="basic-stats sm">
-                  <span className="green">83</span>
+                  <span className="green">{team.high_score}</span>
                   <span role="img" aria-label="medal">
                     🏅
                   </span>
                   high score
                 </div>
-                <div className="basic-stats sm">
+                {/* <div className="basic-stats sm">
                   <span className="green">R2</span>
                   <span role="img" aria-label="best-round">
                     🎵
@@ -188,7 +103,7 @@ class Card extends Component {
                     🗺
                   </span>
                   best topic
-                </div>
+                </div> */}
               </StatsPlaced>
             </CardHalf>
           </CardBody>

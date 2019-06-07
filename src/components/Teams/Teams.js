@@ -16,15 +16,15 @@ class Teams extends Component {
           if (index === 0) {
             rank = index + 1;
           } else if (
-            Math.ceil(teams[index - 1].averageScore) ===
-            Math.ceil(team.averageScore)
+            Math.ceil(teams[index - 1].average_score) ===
+            Math.ceil(team.average_score)
           ) {
             // eslint-disable-next-line
             rank = rank;
           } else {
             rank = index + 1;
           }
-          return <Team team={team} rank={rank} key={team.teamId} />;
+          return <Team team={team} rank={rank} key={team.id} />;
         })}
       </StyledTeamList>
     );

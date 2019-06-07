@@ -37,21 +37,21 @@ class Team extends Component {
                   className="team-name"
                   style={reduceTextSize ? { fontSize: '2rem' } : null}
                 >
-                  {team.teamName}
+                  {team.team_name}
                 </span>
                 <Modal on={on} toggle={toggle}>
-                  <Card />
+                  <Card team={team} />
                 </Modal>
               </>
             )}
           </Toggle>
 
           <span className="average-score num">
-            {Math.ceil(team.averageScore)}
+            {Math.ceil(team.average_score)}
           </span>
-          <span className="games-played num hidden">{team.gamesPlayed}</span>
+          <span className="games-played num hidden">{team.games_played}</span>
           <span className="score-percent num hidden">
-            {Math.round(team.averagePercentCorrect)}%
+            {Math.round(team.average_percent_correct)}%
           </span>
         </div>
       </StyledTeam>
@@ -61,7 +61,7 @@ class Team extends Component {
 
 Team.propTypes = {
   team: PropTypes.shape({
-    teamId: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
     teamName: PropTypes.string.isRequired,
     gamesPlayed: PropTypes.string.isRequired,
     averagePercentCorrect: PropTypes.number.isRequired
