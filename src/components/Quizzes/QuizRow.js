@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { colors } from 'Utilities';
 
 const StyledQuizRow = styled.li`
   display: grid;
@@ -9,8 +10,8 @@ const StyledQuizRow = styled.li`
   padding: 2rem;
   font-size: 1.8rem;
   font-weight: 700;
-  &:nth-child(odd) {
-    background: #dfe6e9;
+  &:nth-child(even) {
+    background: ${colors.primaryLight};
   }
 `;
 
@@ -20,17 +21,17 @@ class QuizRow extends Component {
     return (
       <StyledQuizRow>
         <span className="rank">{rank}.</span>
-        <span className="team-name">{team.teamName}</span>
-        <span className="total">{team.total}</span>
-        <span className="round">{team.r1}</span>
-        <span className="round joker">{team.r2}</span>
-        <span className="round">{team.r3}</span>
-        <span className="round">{team.r4}</span>
-        <span className="round">{team.r5}</span>
-        <span className="round">{team.r6}</span>
-        <span className="round">{team.r7}</span>
-        <span className="round">{team.r8}</span>
-        <span className="round">{team.j}</span>
+        <span className="team-name">{team.team}</span>
+        <span className="total">{team.total_points_scored}</span>
+        <span className="round">{team.r1_points_scored}</span>
+        <span className="round joker">{team.r2_points_scored}</span>
+        <span className="round">{team.r3_points_scored}</span>
+        <span className="round">{team.r4_points_scored}</span>
+        <span className="round">{team.r5_points_scored}</span>
+        <span className="round">{team.r6_points_scored}</span>
+        <span className="round">{team.r7_points_scored}</span>
+        <span className="round">{team.r8_points_scored}</span>
+        <span className="round">{team.round_jokered}</span>
       </StyledQuizRow>
     );
   }

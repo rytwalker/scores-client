@@ -2,9 +2,26 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { colors } from 'Utilities';
 const BarChart = require('react-chartjs').Radar;
-console.log(BarChart);
 
 class Card extends Component {
+  getLatestScores = scores => {
+    const latestScores = [];
+    let loopLength;
+
+    if (scores.length >= 3) {
+      loopLength = 3;
+    } else if (scores.length === 2) {
+      loopLength = 2;
+    }
+    if (loopLength) {
+      for (let i = 0; i < loopLength; i++) {
+        latestScores.push(scores[i]);
+      }
+    } else {
+      latestScores.push(scores[0]);
+    }
+    return latestScores;
+  };
   render() {
     const { team } = this.props;
     const roundData = {
@@ -39,9 +56,18 @@ class Card extends Component {
         <CardContainer>
           <CardBody>
             <CardHalf>
-              <h3>Average Points Per Round</h3>
+              <h3>Average Points Per Round:</h3>
               {/* A new chart is in town */}
               <BarChart data={roundData} height="225" />
+              <h3 style={{ marginBottom: 0 }}>Latest Scores:</h3>
+              <LatestScores>
+                {this.getLatestScores(team.scores).map(score => (
+                  <div className="container">
+                    <div className="date">{score.quiz}</div>
+                    <div className="score">{score.total_points_scored}</div>
+                  </div>
+                ))}
+              </LatestScores>
             </CardHalf>
             <CardHalf>
               <StatsPlaced>
@@ -154,6 +180,23 @@ const CardHalf = styled.div`
     width: 100%;
     height: 225px;
     background: #eee;
+  }
+`;
+
+const LatestScores = styled.div`
+  display: flex;
+  justify-content: space-between;
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .date {
+      /* font-weight: 700; */
+      font-size: 1.4rem;
+    }
+    .score {
+      color: ${colors.primaryDark};
+    }
   }
 `;
 

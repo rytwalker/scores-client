@@ -18,7 +18,7 @@ class Navigation extends Component {
           <FontAwesomeIcon icon={faTrophy} />
           <span className="link-text">Leaderboard</span>
         </NavLink>
-        <NavLink className="quizzes-link" exact to="/quiz/:id">
+        <NavLink className="quizzes-link" exact to="/quizzes">
           <FontAwesomeIcon icon={faThList} />
           <span className="link-text">Quizzes</span>
         </NavLink>

@@ -20,9 +20,12 @@ export const quizzesReducer = (state = initalState, action) => {
     case FETCHING_QUIZZES:
       return { ...state, isFetchingQuizzes: true };
     case FETCHING_QUIZZES_SUCCESS:
+      let loadedQuizzes = action.payload;
+      let latestQuiz = loadedQuizzes[0];
       return {
         ...state,
-        quizzes: [...action.payload.reverse()],
+        quizzes: [...loadedQuizzes],
+        quiz: latestQuiz,
         isFetchingQuizzes: false
       };
     case FETCHING_QUIZZES_FAILURE:

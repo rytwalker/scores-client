@@ -4,6 +4,12 @@ export const FETCHING_TEAMS = 'FETCHING_TEAMS';
 export const FETCHING_TEAMS_SUCCESS = 'FETCHING_TEAMS_SUCCESS';
 export const FETCHING_TEAMS_FAILURE = 'FETCHING_TEAMS_FAILURE';
 
+export const FETCHING_LEADERBOARD_TEAMS = 'FETCHING_LEADERBOARD_TEAMS';
+export const FETCHING_LEADERBOARD_TEAMS_SUCCESS =
+  'FETCHING_LEADERBOARD_TEAMS_SUCCESS';
+export const FETCHING_LEADERBOARD_TEAMS_FAILURE =
+  'FETCHING_LEADERBOARD_TEAMS_FAILURE';
+
 export const FETCHING_QUIZZES = 'FETCHING_QUIZZES';
 export const FETCHING_QUIZZES_SUCCESS = 'FETCHING_QUIZZES_SUCCESS';
 export const FETCHING_QUIZZES_FAILURE = 'FETCHING_QUIZZES_FAILURE';
@@ -19,7 +25,7 @@ export const UPDATE_TOTAL_SCORE = 'UPDATE_TOTAL_SCORE';
 export const fetchTeams = () => dispatch => {
   dispatch({ type: FETCHING_TEAMS });
   axios
-    .get('http://127.0.0.1:8000/api/teams/?format=json')
+    .get('http://127.0.0.1:8000/api/teams/')
     .then(res => {
       dispatch({ type: FETCHING_TEAMS_SUCCESS, payload: res.data });
     })
@@ -28,10 +34,22 @@ export const fetchTeams = () => dispatch => {
     });
 };
 
+export const fetchLeaderboardTeams = () => dispatch => {
+  dispatch({ type: FETCHING_LEADERBOARD_TEAMS });
+  axios
+    .get('http://127.0.0.1:8000/api/leaderboard/')
+    .then(res => {
+      dispatch({ type: FETCHING_LEADERBOARD_TEAMS_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: FETCHING_LEADERBOARD_TEAMS_FAILURE, payload: err });
+    });
+};
+
 export const fetchQuizzes = () => dispatch => {
   dispatch({ type: FETCHING_QUIZZES });
   axios
-    .get(`https://suzies-scores.herokuapp.com/api/quizzes/`)
+    .get(`http://127.0.0.1:8000/api/quizzes/`)
     .then(res => {
       dispatch({ type: FETCHING_QUIZZES_SUCCESS, payload: res.data });
     })
@@ -43,7 +61,7 @@ export const fetchQuizzes = () => dispatch => {
 export const fetchQuiz = id => dispatch => {
   dispatch({ type: FETCHING_QUIZ });
   axios
-    .get(`https://suzies-scores.herokuapp.com/api/quizzes/${id}`)
+    .get(`http://127.0.0.1:8000/api/quizzes/${id}`)
     .then(res => {
       dispatch({ type: FETCHING_QUIZ_SUCCESS, payload: res.data });
     })

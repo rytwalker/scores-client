@@ -17,7 +17,7 @@ class App extends Component {
         <Header />
         <Route exact path="/" component={LeaderboardView} />
         <Route exact path="/teams" component={TeamsView} />
-        <Route exact path="/quiz/:id" component={QuizzesView} />
+        <Route exact path="/quizzes/" component={QuizzesView} />
         <Route exact path="/new-quiz" component={Scorecard} />
         <Route exact path="/admin-dashboard" component={AdminDashboardView} />
         <Route exact path="/about" component={AboutView} />

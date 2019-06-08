@@ -12,26 +12,28 @@ class QuizzesView extends Component {
     return !totalQuizzes.length ? fetchQuizzes() : null;
   }
 
-  componentDidUpdate(prevProps) {
-    const { totalQuizzes, fetchQuiz } = this.props;
-    let currentQuizId = parseInt(this.props.match.params.id);
-    if (
-      prevProps.totalQuizzes.length !== totalQuizzes.length ||
-      prevProps.match.params.id !== this.props.match.params.id
-    ) {
-      fetchQuiz(currentQuizId);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { totalQuizzes, fetchQuiz } = this.props;
+  //   let currentQuizId = parseInt(this.props.match.params.id);
+  //   if (
+  //     prevProps.totalQuizzes.length !== totalQuizzes.length ||
+  //     prevProps.match.params.id !== this.props.match.params.id
+  //   ) {
+  //     fetchQuiz(currentQuizId);
+  //   }
+  // }
 
   onSelectChange = e => {
-    this.props.history.push(`/quiz/${e.target.value}`);
+    // this.props.history.push(`/quiz/${e.target.value}`);
+    const { fetchQuiz } = this.props;
+    fetchQuiz(e.target.value);
   };
 
   render() {
     const { quiz, totalQuizzes } = this.props;
     return (
       <div className="View">
-        {!quiz ? (
+        {!totalQuizzes ? (
           <Loader />
         ) : (
           <div>
@@ -44,12 +46,12 @@ class QuizzesView extends Component {
               >
                 {totalQuizzes.map(quiz => (
                   <option value={quiz.id} key={quiz.id}>
-                    {quiz.date}
+                    {quiz.scores[0].quiz}
                   </option>
                 ))}
               </select>
             </StyledQuizDateRow>
-            <Quiz quiz={quiz} quizzes={totalQuizzes} />
+            {quiz && <Quiz quiz={quiz} quizzes={totalQuizzes} />}
           </div>
         )}
       </div>
@@ -64,15 +66,15 @@ const mapStateToProps = state => {
   };
 };
 
-QuizzesView.propTypes = {
-  totalQuizzes: PropTypes.array.isRequired,
-  quiz: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    totalTeams: PropTypes.string.isRequired,
-    results: PropTypes.arrayOf(PropTypes.object).isRequired
-  })
-};
+// QuizzesView.propTypes = {
+//   totalQuizzes: PropTypes.array.isRequired,
+//   quiz: PropTypes.shape({
+//     id: PropTypes.number.isRequired,
+//     date: PropTypes.string.isRequired,
+//     totalTeams: PropTypes.string.isRequired,
+//     results: PropTypes.arrayOf(PropTypes.object).isRequired
+//   })
+// };
 
 export default connect(
   mapStateToProps,
