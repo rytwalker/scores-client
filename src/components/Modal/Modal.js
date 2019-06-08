@@ -40,7 +40,7 @@ const Modal = ({ children, on, toggle }) => {
 };
 
 const ModalWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

@@ -34,14 +34,14 @@ class Card extends Component {
           highlightFill: 'rgba(181, 232, 213, 0.75)',
           highlightStroke: 'rgba(181, 232, 213, 1)',
           data: [
-            team.average_r1_score,
-            team.average_r2_score,
-            team.average_r3_score,
-            team.average_r4_score,
-            team.average_r5_score,
-            team.average_r6_score,
-            team.average_r7_score,
-            team.average_r8_score
+            Math.round(team.average_r1_score),
+            Math.round(team.average_r2_score),
+            Math.round(team.average_r3_score),
+            Math.round(team.average_r4_score),
+            Math.round(team.average_r5_score),
+            Math.round(team.average_r6_score),
+            Math.round(team.average_r7_score),
+            Math.round(team.average_r8_score)
           ]
         }
       ]
