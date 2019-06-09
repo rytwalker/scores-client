@@ -25,7 +25,7 @@ export const UPDATE_TOTAL_SCORE = 'UPDATE_TOTAL_SCORE';
 export const fetchTeams = () => dispatch => {
   dispatch({ type: FETCHING_TEAMS });
   axios
-    .get('http://127.0.0.1:8000/api/teams/')
+    .get('https://suzies-quiz-scores.herokuapp.com/api/teams/')
     .then(res => {
       dispatch({ type: FETCHING_TEAMS_SUCCESS, payload: res.data });
     })
@@ -37,7 +37,7 @@ export const fetchTeams = () => dispatch => {
 export const fetchLeaderboardTeams = () => dispatch => {
   dispatch({ type: FETCHING_LEADERBOARD_TEAMS });
   axios
-    .get('http://127.0.0.1:8000/api/leaderboard/')
+    .get('https://suzies-quiz-scores.herokuapp.com/api/leaderboard/')
     .then(res => {
       dispatch({ type: FETCHING_LEADERBOARD_TEAMS_SUCCESS, payload: res.data });
     })
@@ -49,7 +49,7 @@ export const fetchLeaderboardTeams = () => dispatch => {
 export const fetchQuizzes = () => dispatch => {
   dispatch({ type: FETCHING_QUIZZES });
   axios
-    .get(`http://127.0.0.1:8000/api/quizzes/`)
+    .get(`https://suzies-quiz-scores.herokuapp.com/api/quizzes/`)
     .then(res => {
       dispatch({ type: FETCHING_QUIZZES_SUCCESS, payload: res.data });
     })
@@ -61,7 +61,7 @@ export const fetchQuizzes = () => dispatch => {
 export const fetchQuiz = id => dispatch => {
   dispatch({ type: FETCHING_QUIZ });
   axios
-    .get(`http://127.0.0.1:8000/api/quizzes/${id}`)
+    .get(`https://suzies-quiz-scores.herokuapp.com/api/quizzes/${id}`)
     .then(res => {
       dispatch({ type: FETCHING_QUIZ_SUCCESS, payload: res.data });
     })
