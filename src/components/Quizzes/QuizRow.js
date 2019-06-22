@@ -39,18 +39,18 @@ class QuizRow extends Component {
 
 QuizRow.propTypes = {
   team: PropTypes.shape({
-    teamId: PropTypes.number.isRequired,
-    teamName: PropTypes.string.isRequired,
-    total: PropTypes.number.isRequired,
-    r1: PropTypes.number.isRequired,
-    r2: PropTypes.number.isRequired,
-    r3: PropTypes.number.isRequired,
-    r4: PropTypes.number.isRequired,
-    r5: PropTypes.number.isRequired,
-    r6: PropTypes.number.isRequired,
-    r7: PropTypes.number.isRequired,
-    r8: PropTypes.number.isRequired,
-    j: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    team: PropTypes.string.isRequired,
+    total_points_scored: PropTypes.number.isRequired,
+    r1_points_scored: PropTypes.number.isRequired,
+    r2_points_scored: PropTypes.number.isRequired,
+    r3_points_scored: PropTypes.number.isRequired,
+    r4_points_scored: PropTypes.number.isRequired,
+    r5_points_scored: PropTypes.number.isRequired,
+    r6_points_scored: PropTypes.number.isRequired,
+    r7_points_scored: PropTypes.number.isRequired,
+    r8_points_scored: PropTypes.number.isRequired,
+    round_jokered: PropTypes.number.isRequired
   }).isRequired
 };
 

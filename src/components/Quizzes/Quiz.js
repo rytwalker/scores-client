@@ -28,10 +28,8 @@ const StyledList = styled.ul`
 
 Quiz.propTypes = {
   quiz: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    date: PropTypes.string.isRequired,
-    totalTeams: PropTypes.string.isRequired,
-    results: PropTypes.arrayOf(PropTypes.object).isRequired
+    id: PropTypes.string.isRequired,
+    scores: PropTypes.arrayOf(PropTypes.object).isRequired
   }).isRequired
 };
 

@@ -20,10 +20,12 @@ const Loader = () => {
 const grow = keyframes`
   0% {
     transform: scale(.3);
+    opacity: .6;
   }
 
   33% {
     transform: scale(1);
+    opacity: 1;
   }
   94% {
     transform: scale(1);
@@ -31,32 +33,39 @@ const grow = keyframes`
 
   100% {
     transform: scale(.3);
+    opacity: .6;
   }
 `;
 const grow2 = keyframes`
   0% {
     transform: scale(.3);
+    opacity: .6;
   }
 
   66% {
     transform: scale(1);
+    opacity: 1;
   }
 
   96% {
     transform: scale(1);
+    opacity: 1;
   }
 
   100% {
     transform: scale(.3);
+    opacity: .75;
   }
 `;
 const grow3 = keyframes`
   0% {
     transform: scale(.3);
+    opacity: .6;
   }
 
   90% {
     transform: scale(1);
+    opacity: 1;
   }
 
   98% {
@@ -64,6 +73,7 @@ const grow3 = keyframes`
   }
   100% {
     transform: scale(.3);
+    opacity: .75;
   }
 `;
 

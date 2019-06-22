@@ -4,7 +4,7 @@ import { fetchQuizzes, fetchQuiz } from '../actions';
 import PropTypes from 'prop-types';
 import Loader from '../components/Loader/Loader';
 import Quiz from '../components/Quizzes/Quiz';
-import { StyledQuizDateRow } from '../styles/StyledQuizDateRow';
+import QuizSelect from '../components/Quizzes/QuizSelect';
 
 class QuizzesView extends Component {
   componentDidMount() {
@@ -12,19 +12,7 @@ class QuizzesView extends Component {
     return !totalQuizzes.length ? fetchQuizzes() : null;
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { totalQuizzes, fetchQuiz } = this.props;
-  //   let currentQuizId = parseInt(this.props.match.params.id);
-  //   if (
-  //     prevProps.totalQuizzes.length !== totalQuizzes.length ||
-  //     prevProps.match.params.id !== this.props.match.params.id
-  //   ) {
-  //     fetchQuiz(currentQuizId);
-  //   }
-  // }
-
   onSelectChange = e => {
-    // this.props.history.push(`/quiz/${e.target.value}`);
     const { fetchQuiz } = this.props;
     fetchQuiz(e.target.value);
   };
@@ -33,26 +21,17 @@ class QuizzesView extends Component {
     const { quiz, totalQuizzes } = this.props;
     return (
       <div className="View">
-        {!totalQuizzes ? (
+        {!totalQuizzes.length ? (
           <Loader />
         ) : (
-          <div>
+          <>
             <h2>LATEST QUIZ</h2>
-            <StyledQuizDateRow>
-              <select
-                name="quizzes"
-                className="quiz-dates"
-                onChange={this.onSelectChange}
-              >
-                {totalQuizzes.map(quiz => (
-                  <option value={quiz.id} key={quiz.id}>
-                    {quiz.scores[0].quiz}
-                  </option>
-                ))}
-              </select>
-            </StyledQuizDateRow>
+            <QuizSelect
+              onSelectChange={this.onSelectChange}
+              totalQuizzes={totalQuizzes}
+            />
             {quiz && <Quiz quiz={quiz} quizzes={totalQuizzes} />}
-          </div>
+          </>
         )}
       </div>
     );
@@ -66,15 +45,14 @@ const mapStateToProps = state => {
   };
 };
 
-// QuizzesView.propTypes = {
-//   totalQuizzes: PropTypes.array.isRequired,
-//   quiz: PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     date: PropTypes.string.isRequired,
-//     totalTeams: PropTypes.string.isRequired,
-//     results: PropTypes.arrayOf(PropTypes.object).isRequired
-//   })
-// };
+QuizzesView.propTypes = {
+  totalQuizzes: PropTypes.array.isRequired,
+  quiz: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
+    scores: PropTypes.arrayOf(PropTypes.object).isRequired
+  })
+};
 
 export default connect(
   mapStateToProps,

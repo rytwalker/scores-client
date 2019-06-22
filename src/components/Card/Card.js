@@ -56,15 +56,17 @@ class Card extends Component {
         <CardContainer>
           <CardBody>
             <CardHalf>
-              <h3>Average Points Per Round:</h3>
+              <h3 style={{ margin: 0, marginBottom: '1rem' }}>
+                Average Points Per Round:
+              </h3>
               {/* A new chart is in town */}
-              <BarChart data={roundData} height="225" />
-              <h3 style={{ marginBottom: 0 }}>Latest Scores:</h3>
+              <BarChart data={roundData} height="200" />
+              <h3 style={{ marginBottom: '1rem' }}>Latest Scores:</h3>
               <LatestScores>
                 {this.getLatestScores(team.scores).map(score => (
                   <div className="container">
-                    <div className="date">{score.quiz}</div>
                     <div className="score">{score.total_points_scored}</div>
+                    <div className="date">{score.quiz}</div>
                   </div>
                 ))}
               </LatestScores>
@@ -100,7 +102,7 @@ class Card extends Component {
                   <span className="green">
                     {Math.round(team.average_percent_correct)}%
                   </span>
-                  average number correct
+                  average % correct
                 </div>
                 <div className="basic-stats">
                   <span className="green">{team.games_played}</span>
@@ -192,10 +194,14 @@ const LatestScores = styled.div`
     align-items: center;
     .date {
       /* font-weight: 700; */
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
     .score {
       color: ${colors.primaryDark};
+      border: 1px solid ${colors.primaryDark};
+      border-radius: 4px;
+      padding: 2rem;
+      font-size: 2rem;
     }
   }
 `;
@@ -229,13 +235,18 @@ const StatsPlaced = styled.div`
   .basic-stats {
     margin-bottom: 1rem;
     width: 100%;
+    border-radius: 4px;
+    background: ${colors.primaryLight};
+    padding: 1rem;
+    font-size: 1.6rem;
     .green {
       color: ${colors.primaryDark};
       margin-right: 1rem;
+      font-size: 2rem;
     }
   }
   .sm {
-    font-size: 1.8rem;
+    /* font-size: 1.8rem; */
     margin-bottom: 0.7rem;
   }
 `;
