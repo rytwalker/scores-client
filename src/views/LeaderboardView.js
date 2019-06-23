@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { fetchLeaderboardTeams } from '../actions';
 import PropTypes from 'prop-types';
 import Loader from '../components/Loader/Loader';
 import Teams from '../components/Teams/Teams';
+import SortBar from '../components/SortBar/SortBar';
 
 class LeaderboardView extends Component {
   componentDidMount() {
@@ -20,13 +22,25 @@ class LeaderboardView extends Component {
         ) : (
           <>
             <h2>LEADERBOARD</h2>
-            <Teams teams={teams} />
+            <Container>
+              <SortBar />
+              <Teams teams={teams} />
+            </Container>
           </>
         )}
       </div>
     );
   }
 }
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-gap: 2rem;
+`;
 
 const mapStateToProps = state => {
   return {

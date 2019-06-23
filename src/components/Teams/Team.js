@@ -69,6 +69,9 @@ Team.propTypes = {
 };
 
 const StyledTeam = styled.li`
+  background: ${colors.white};
+  margin-bottom: 1rem;
+  border-radius: 4px;
   &:nth-child(even) {
     background: ${colors.primaryLight};
   }
@@ -76,9 +79,10 @@ const StyledTeam = styled.li`
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     align-items: center;
-    padding: 3rem;
+    padding: 2rem;
     font-size: 2.4rem;
-    font-weight: 700;
+    font-weight: 900;
+
     @media (min-width: 768px) {
       grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
       width: 95%;
@@ -87,12 +91,13 @@ const StyledTeam = styled.li`
     @media (min-width: 1200px) {
       width: 85%;
       font-size: 2.8rem;
-      padding: 2rem;
+      padding: 1.5rem;
     }
   }
   .team-name {
     cursor: pointer;
     transition: all 0.2s;
+
     &:hover {
       color: ${colors.primaryDark};
       text-decoration: underline;
@@ -101,6 +106,7 @@ const StyledTeam = styled.li`
   .num {
     font-size: 3rem;
     justify-self: center;
+    font-weight: 300;
 
     @media (min-width: 1200px) {
       font-size: 3.4rem;
@@ -114,10 +120,11 @@ const StyledTeam = styled.li`
     ${flexCenter()};
     border-radius: 50%;
     text-align: center;
+    font-weight: 900;
     @media (min-width: 1200px) {
-      height: 8rem;
-      width: 8rem;
-      font-size: 4rem;
+      /* height: 8rem;
+      width: 8rem; */
+      /* font-size: 4rem; */
     }
   }
   .hidden {

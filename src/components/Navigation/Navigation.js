@@ -77,13 +77,13 @@ const StyledNavigation = styled.nav`
     color: ${colors.gold};
   }
   .quizzes-link:hover {
-    color: ${colors.primary};
+    color: ${colors.primaryDark};
   }
   .teams-link:hover {
     color: ${colors.black};
   }
   .about-link:hover {
-    color: ${colors.red};
+    color: ${colors.primaryDark};
   }
 
   .active {
