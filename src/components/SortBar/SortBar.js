@@ -1,16 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
+import SortButton from './SortButton';
 import { colors } from 'Utilities';
 
-const SortBar = () => {
+const SortBar = ({
+  currentFilter,
+  sorts: {
+    sortByAverageCorrect,
+    sortByAverageScore,
+    sortByGamesPlayed,
+    sortByMostWins,
+    sortByMostTop3
+  }
+}) => {
   return (
     <StyledSortBar>
       <Container>
         <h4>Sort by:</h4>
-        <SortButton>Average Score</SortButton>
-        <SortButton>% Correct</SortButton>
-        <SortButton>Most Wins</SortButton>
-        <SortButton>Most Top 3</SortButton>
+        <SortButton
+          currentFilter={currentFilter}
+          filter="AVERAGE_SCORE"
+          handleClick={sortByAverageScore}
+        >
+          Average Score
+        </SortButton>
+        <SortButton
+          currentFilter={currentFilter}
+          filter="AVERAGE_CORRECT"
+          handleClick={sortByAverageCorrect}
+        >
+          % Correct
+        </SortButton>
+        <SortButton
+          currentFilter={currentFilter}
+          filter="MOST_WINS"
+          handleClick={sortByMostWins}
+        >
+          Most Wins
+        </SortButton>
+        <SortButton
+          currentFilter={currentFilter}
+          filter="MOST_TOP3"
+          handleClick={sortByMostTop3}
+        >
+          Most Top 3
+        </SortButton>
+        <SortButton
+          currentFilter={currentFilter}
+          filter="GAMES_PLAYED"
+          handleClick={sortByGamesPlayed}
+        >
+          Games Played
+        </SortButton>
       </Container>
     </StyledSortBar>
   );
@@ -28,20 +69,6 @@ const Container = styled.div`
   padding: 2rem;
   border-radius: 4px;
   position: fixed;
-`;
-
-const SortButton = styled.div`
-  border: 1px solid ${colors.primaryDark};
-  border-radius: 4px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  font-weight: 300;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s;
-  &:hover {
-    background: ${colors.primary};
-  }
 `;
 
 export default SortBar;

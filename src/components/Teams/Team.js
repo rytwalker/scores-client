@@ -89,7 +89,6 @@ const StyledTeam = styled.li`
       margin: 0 auto;
     }
     @media (min-width: 1200px) {
-      width: 85%;
       font-size: 2.8rem;
       padding: 1.5rem;
     }

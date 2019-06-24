@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { fetchLeaderboardTeams } from '../actions';
+import {
+  fetchLeaderboardTeams,
+  sortByAverageCorrect,
+  sortByAverageScore,
+  sortByGamesPlayed,
+  sortByMostWins,
+  sortByMostTop3
+} from '../actions';
 import PropTypes from 'prop-types';
 import Loader from '../components/Loader/Loader';
 import Teams from '../components/Teams/Teams';
@@ -14,7 +21,15 @@ class LeaderboardView extends Component {
   }
 
   render() {
-    const { teams } = this.props;
+    const {
+      currentFilter,
+      teams,
+      sortByAverageCorrect,
+      sortByAverageScore,
+      sortByGamesPlayed,
+      sortByMostWins,
+      sortByMostTop3
+    } = this.props;
     return (
       <div className="View">
         {!teams.length ? (
@@ -23,8 +38,17 @@ class LeaderboardView extends Component {
           <>
             <h2>LEADERBOARD</h2>
             <Container>
-              <SortBar />
               <Teams teams={teams} />
+              <SortBar
+                currentFilter={currentFilter}
+                sorts={{
+                  sortByAverageCorrect,
+                  sortByAverageScore,
+                  sortByGamesPlayed,
+                  sortByMostWins,
+                  sortByMostTop3
+                }}
+              />
             </Container>
           </>
         )}
@@ -35,7 +59,7 @@ class LeaderboardView extends Component {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 3fr 1fr;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -44,9 +68,10 @@ const Container = styled.div`
 
 const mapStateToProps = state => {
   return {
-    teams: state.teams.leaderboard,
+    teams: state.teams.sortedLeaderboard,
     error: state.teams.error,
-    isFetching: state.teams.isFetching
+    isFetching: state.teams.isFetching,
+    currentFilter: state.teams.currentFilter
   };
 };
 
@@ -58,5 +83,12 @@ LeaderboardView.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { fetchLeaderboardTeams }
+  {
+    fetchLeaderboardTeams,
+    sortByAverageCorrect,
+    sortByAverageScore,
+    sortByGamesPlayed,
+    sortByMostWins,
+    sortByMostTop3
+  }
 )(LeaderboardView);

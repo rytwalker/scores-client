@@ -28,7 +28,7 @@ const StyledKey = styled.li`
     margin: 0 auto;
   }
   @media (min-width: 1200px) {
-    width: 85%;
+    padding: 0 1.5rem;
   }
   .num {
     text-align: center;
