@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Card from '../Card/Card';
 import Modal from '../Modal/Modal';
 import { colors, flexCenter, Toggle } from 'Utilities';
+import { animated } from 'react-spring';
 
 class Team extends Component {
   state = { reduceTextSize: false };
@@ -26,7 +27,7 @@ class Team extends Component {
     // }
 
     return (
-      <StyledTeam>
+      <AnimatedTeam style={this.props.styles}>
         <div className="container">
           <span className="rank">{rank}</span>
           <Toggle>
@@ -54,7 +55,7 @@ class Team extends Component {
             {Math.round(team.average_percent_correct)}%
           </span>
         </div>
-      </StyledTeam>
+      </AnimatedTeam>
     );
   }
 }
@@ -72,6 +73,11 @@ const StyledTeam = styled.li`
   background: ${colors.white};
   margin-bottom: 1rem;
   border-radius: 4px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  will-change: transform, height, opacity;
   &:nth-child(even) {
     background: ${colors.primaryLight};
   }
@@ -133,5 +139,7 @@ const StyledTeam = styled.li`
     }
   }
 `;
+
+const AnimatedTeam = animated(StyledTeam);
 
 export default Team;
