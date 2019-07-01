@@ -5,6 +5,7 @@ import { colors } from 'Utilities';
 
 const SortBar = ({
   currentFilter,
+  location,
   sorts: {
     sortByAverageCorrect,
     sortByAverageScore,
@@ -31,6 +32,7 @@ const SortBar = ({
           isActive={isActive}
           filter="AVERAGE_SCORE"
           handleClick={sortByAverageScore}
+          location={location}
           setActiveTab={setActive}
         >
           Average Score
@@ -39,6 +41,7 @@ const SortBar = ({
           isActive={isActive}
           filter="AVERAGE_CORRECT"
           handleClick={sortByAverageCorrect}
+          location={location}
           setActiveTab={setActive}
         >
           % Correct
@@ -47,6 +50,7 @@ const SortBar = ({
           isActive={isActive}
           filter="MOST_WINS"
           handleClick={sortByMostWins}
+          location={location}
           setActiveTab={setActive}
         >
           Most Wins
@@ -55,6 +59,7 @@ const SortBar = ({
           isActive={isActive}
           filter="MOST_TOP3"
           handleClick={sortByMostTop3}
+          location={location}
           setActiveTab={setActive}
         >
           Most Top 3
@@ -64,6 +69,7 @@ const SortBar = ({
           currentFilter={currentFilter}
           filter="GAMES_PLAYED"
           handleClick={sortByGamesPlayed}
+          location={location}
           setActiveTab={setActive}
         >
           Games Played

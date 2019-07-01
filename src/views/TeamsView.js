@@ -17,6 +17,7 @@ import SortBar from '../components/SortBar/SortBar';
 class TeamsView extends Component {
   componentDidMount() {
     const { fetchTeams, teams } = this.props;
+    console.log(this.props);
     return !teams.length ? fetchTeams() : null;
   }
 
@@ -41,6 +42,7 @@ class TeamsView extends Component {
               <Teams teams={teams} />
               <SortBar
                 currentFilter={currentFilter}
+                location={this.props.location.pathname}
                 sorts={{
                   sortByAverageCorrect,
                   sortByAverageScore,
@@ -68,7 +70,7 @@ const Container = styled.div`
 
 const mapStateToProps = state => {
   return {
-    teams: state.teams.teams,
+    teams: state.teams.sortedTeams,
     error: state.teams.error,
     isFetching: state.teams.isFetching,
     currentFilter: state.teams.currentFilter

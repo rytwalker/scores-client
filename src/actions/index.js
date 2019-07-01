@@ -90,32 +90,37 @@ export const updatingTotalScore = team => {
   };
 };
 
-export const sortByAverageCorrect = () => {
+export const sortByAverageCorrect = location => {
   return {
-    type: SORT_BY_AVERAGE_CORRECT
+    type: SORT_BY_AVERAGE_CORRECT,
+    payload: location
   };
 };
 
-export const sortByAverageScore = () => {
+export const sortByAverageScore = location => {
   return {
-    type: SORT_BY_AVERAGE_SCORE
+    type: SORT_BY_AVERAGE_SCORE,
+    payload: location
   };
 };
 
-export const sortByMostWins = () => {
+export const sortByMostWins = location => {
   return {
-    type: SORT_BY_MOST_WINS
+    type: SORT_BY_MOST_WINS,
+    payload: location
   };
 };
 
-export const sortByMostTop3 = () => {
+export const sortByMostTop3 = location => {
   return {
-    type: SORT_BY_MOST_TOP_3
+    type: SORT_BY_MOST_TOP_3,
+    payload: location
   };
 };
 
-export const sortByGamesPlayed = () => {
+export const sortByGamesPlayed = location => {
   return {
-    type: SORT_BY_GAMES_PLAYED
+    type: SORT_BY_GAMES_PLAYED,
+    payload: location
   };
 };

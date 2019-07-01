@@ -24,6 +24,7 @@ const initalState = {
 
 export const teamsReducer = (state = initalState, action) => {
   let sorted;
+  let sortKey;
   switch (action.type) {
     case FETCHING_TEAMS:
     case FETCHING_LEADERBOARD_TEAMS:
@@ -50,39 +51,72 @@ export const teamsReducer = (state = initalState, action) => {
         isFetching: false
       };
     case SORT_BY_AVERAGE_SCORE:
+      console.log(action.payload);
+      if (action.payload === '/') {
+        sorted = [...state.leaderboard];
+        sortKey = 'sortedLeaderboard';
+      } else {
+        sorted = [...state.sortedTeams];
+        sortKey = 'sortedTeams';
+        sorted.sort((a, b) => a.average_score - b.average_score).reverse();
+      }
       return {
         ...state,
-        sortedLeaderboard: [...state.leaderboard],
+        [sortKey]: sorted,
         currentFilter: 'AVERAGE_SCORE'
       };
     case SORT_BY_AVERAGE_CORRECT:
-      sorted = [...state.sortedLeaderboard];
+      if (action.payload === '/') {
+        sorted = [...state.sortedLeaderboard];
+        sortKey = 'sortedLeaderboard';
+      } else {
+        sorted = [...state.sortedTeams];
+        sortKey = 'sortedTeams';
+      }
       sorted
         .sort((a, b) => a.average_percent_correct - b.average_percent_correct)
         .reverse();
       return {
         ...state,
-        sortedLeaderboard: sorted,
+        [sortKey]: sorted,
         currentFilter: 'AVERAGE_CORRECT'
       };
     case SORT_BY_GAMES_PLAYED:
-      sorted = [...state.sortedLeaderboard];
+      if (action.payload === '/') {
+        sorted = [...state.sortedLeaderboard];
+        sortKey = 'sortedLeaderboard';
+      } else {
+        sorted = [...state.sortedTeams];
+        sortKey = 'sortedTeams';
+      }
       sorted.sort((a, b) => a.games_played - b.games_played).reverse();
       return {
         ...state,
-        sortedLeaderboard: sorted,
+        [sortKey]: sorted,
         currentFilter: 'GAMES_PLAYED'
       };
     case SORT_BY_MOST_WINS:
-      sorted = [...state.sortedLeaderboard];
+      if (action.payload === '/') {
+        sorted = [...state.sortedLeaderboard];
+        sortKey = 'sortedLeaderboard';
+      } else {
+        sorted = [...state.sortedTeams];
+        sortKey = 'sortedTeams';
+      }
       sorted.sort((a, b) => a.first_place - b.first_place).reverse();
       return {
         ...state,
-        sortedLeaderboard: sorted,
+        [sortKey]: sorted,
         currentFilter: 'MOST_WINS'
       };
     case SORT_BY_MOST_TOP_3:
-      sorted = [...state.sortedLeaderboard];
+      if (action.payload === '/') {
+        sorted = [...state.sortedLeaderboard];
+        sortKey = 'sortedLeaderboard';
+      } else {
+        sorted = [...state.sortedTeams];
+        sortKey = 'sortedTeams';
+      }
       sorted
         .sort(
           (a, b) =>
@@ -94,7 +128,7 @@ export const teamsReducer = (state = initalState, action) => {
         .reverse();
       return {
         ...state,
-        sortedLeaderboard: sorted,
+        [sortKey]: sorted,
         currentFilter: 'MOST_TOP3'
       };
     default:

@@ -6,11 +6,12 @@ const SortButton = ({
   isActive,
   filter,
   handleClick,
+  location,
   children,
   setActiveTab
 }) => {
   const click = () => {
-    handleClick();
+    handleClick(location);
     setActiveTab(filter);
   };
 

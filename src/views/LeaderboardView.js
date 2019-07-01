@@ -41,6 +41,7 @@ class LeaderboardView extends Component {
               <Teams teams={teams} />
               <SortBar
                 currentFilter={currentFilter}
+                location={this.props.location.pathname}
                 sorts={{
                   sortByAverageCorrect,
                   sortByAverageScore,
