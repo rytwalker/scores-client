@@ -77,6 +77,8 @@ const StyledTeam = styled.li`
   display: flex;
   align-items: center;
   height: 80px;
+  position: absolute;
+  width: 100%;
   will-change: transform, height, opacity;
   &:nth-child(even) {
     background: ${colors.primaryLight};

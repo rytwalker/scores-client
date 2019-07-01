@@ -10,7 +10,7 @@ const Teams = ({ teams }) => {
   let height = 0;
   const mappedTeams = teams.map(data => ({
     ...data,
-    y: (height += 10) - 10
+    y: (height += 100) - 100
   }));
 
   const transitions = useTransition(
@@ -25,7 +25,7 @@ const Teams = ({ teams }) => {
   );
   let rank;
   return (
-    <StyledTeamList>
+    <StyledTeamList height={height}>
       <LeaderboardKey />
       {transitions.map(({ item, props: { y, ...rest }, key }, index) => {
         if (index === 0) {
@@ -60,9 +60,10 @@ const StyledTeamList = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh;
   width: 100%;
+  position: relative;
+  height: ${({ height }) => height + 'px'};
 `;
 
 Teams.propTypes = {
