@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { colors } from 'Utilities';
 
-const SortButton = ({ currentFilter, filter, handleClick, children }) => {
-  const [active, setActive] = useState(filter === currentFilter ? true : false);
+const SortButton = ({
+  isActive,
+  filter,
+  handleClick,
+  children,
+  setActiveTab
+}) => {
   const click = () => {
     handleClick();
-    setActive(filter === currentFilter ? true : false);
+    setActiveTab(filter);
   };
+
   return (
-    <StyledSortButton active={active} onClick={click}>
+    <StyledSortButton active={isActive(filter)} onClick={click}>
       {children}
     </StyledSortButton>
   );

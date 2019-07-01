@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTeams } from '../actions';
+import styled from 'styled-components';
+import {
+  fetchTeams,
+  sortByAverageCorrect,
+  sortByAverageScore,
+  sortByGamesPlayed,
+  sortByMostWins,
+  sortByMostTop3
+} from '../actions';
 import PropTypes from 'prop-types';
 import Loader from '../components/Loader/Loader';
 import Teams from '../components/Teams/Teams';
+import SortBar from '../components/SortBar/SortBar';
 
 class TeamsView extends Component {
   componentDidMount() {
@@ -12,7 +21,15 @@ class TeamsView extends Component {
   }
 
   render() {
-    const { teams } = this.props;
+    const {
+      currentFilter,
+      teams,
+      sortByAverageCorrect,
+      sortByAverageScore,
+      sortByGamesPlayed,
+      sortByMostWins,
+      sortByMostTop3
+    } = this.props;
     return (
       <div className="View">
         {!teams.length ? (
@@ -20,7 +37,19 @@ class TeamsView extends Component {
         ) : (
           <>
             <h2>All Teams</h2>
-            <Teams teams={teams} />
+            <Container>
+              <Teams teams={teams} />
+              <SortBar
+                currentFilter={currentFilter}
+                sorts={{
+                  sortByAverageCorrect,
+                  sortByAverageScore,
+                  sortByGamesPlayed,
+                  sortByMostWins,
+                  sortByMostTop3
+                }}
+              />
+            </Container>
           </>
         )}
       </div>
@@ -28,11 +57,21 @@ class TeamsView extends Component {
   }
 }
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-gap: 2rem;
+`;
+
 const mapStateToProps = state => {
   return {
     teams: state.teams.teams,
     error: state.teams.error,
-    isFetching: state.teams.isFetching
+    isFetching: state.teams.isFetching,
+    currentFilter: state.teams.currentFilter
   };
 };
 
@@ -44,5 +83,12 @@ TeamsView.propTypes = {
 
 export default connect(
   mapStateToProps,
-  { fetchTeams }
+  {
+    fetchTeams,
+    sortByAverageCorrect,
+    sortByAverageScore,
+    sortByGamesPlayed,
+    sortByMostWins,
+    sortByMostTop3
+  }
 )(TeamsView);

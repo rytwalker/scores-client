@@ -59,11 +59,14 @@ class LeaderboardView extends Component {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 3fr 1fr;
+
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   grid-gap: 2rem;
+  @media (min-width: 1090px) {
+    grid-template-columns: 3fr 1fr;
+  }
 `;
 
 const mapStateToProps = state => {
