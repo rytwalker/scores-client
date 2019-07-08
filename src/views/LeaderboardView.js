@@ -60,7 +60,6 @@ class LeaderboardView extends Component {
 
 const Container = styled.div`
   display: grid;
-
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;

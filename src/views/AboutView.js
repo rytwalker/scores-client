@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Loader from '../components/Loader/Loader';
 
 class AboutView extends Component {
   render() {

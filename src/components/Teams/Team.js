@@ -90,6 +90,7 @@ const StyledTeam = styled.li`
     padding: 2rem;
     font-size: 2.4rem;
     font-weight: 900;
+    width: 100%;
 
     @media (min-width: 768px) {
       grid-template-columns: 1fr 3fr 1fr 1fr 1fr;

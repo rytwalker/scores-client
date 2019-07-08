@@ -82,9 +82,13 @@ const SortBar = ({
 const StyledSortBar = styled.div`
   /* background: ${colors.white};
   padding: 2rem; */
+  display: none;
   position: relative;
   width: 100%;
   margin-top: 1.5rem;
+  @media (min-width: 960px) {
+    display: block;
+  }
 `;
 
 const Container = styled.div`
