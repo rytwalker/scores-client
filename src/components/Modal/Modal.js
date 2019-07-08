@@ -48,6 +48,7 @@ const ModalWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 `;
 
 const ModalCard = styled(animated.div)`
@@ -60,8 +61,10 @@ const ModalCard = styled(animated.div)`
   min-height: 100%;
   border-radius: 2.5px;
   z-index: 1000;
+  margin-bottom: 50px;
   @media (min-width: 900px) {
     margin-top: -25px;
+    margin-bottom: 0px;
     min-height: 0;
     height: 500px;
     position: fixed;
